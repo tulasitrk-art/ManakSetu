@@ -5,7 +5,7 @@ Uses compact integer tuple indexing and shared dataset reference.
 """
 import math
 import re
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any, Tuple, Optional
 from app.services.data_loader import get_standards, get_standards_by_code
 
 class HybridRetrievalService:
