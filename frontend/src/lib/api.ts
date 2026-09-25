@@ -92,18 +92,24 @@ export async function fetchQCOList(params?: {
   return response.json();
 }
 
-export async function fetchGraphData(): Promise<{ nodes: any[]; links: any[] }> {
+export async function fetchGraphData(): Promise<{ nodes: any[]; links: any[]; edges?: any[] }> {
   const response = await fetch(`${API_BASE_URL}/graph/`);
   if (!response.ok) {
     throw new Error("Failed to fetch knowledge graph data.");
   }
-  return response.json();
+  const data = await response.json();
+  const edges = Array.isArray(data.links) ? data.links : Array.isArray(data.edges) ? data.edges : [];
+  return {
+    nodes: Array.isArray(data.nodes) ? data.nodes : [],
+    links: edges,
+    edges: edges,
+  };
 }
 
 export async function fetchGraphNeighborhood(
   isCode: string,
   depth: number = 1
-): Promise<any> {
+): Promise<{ nodes: any[]; links: any[]; edges?: any[] }> {
   const url = new URL(`${API_BASE_URL}/graph/neighborhood`);
   url.searchParams.append("is_code", isCode);
   url.searchParams.append("depth", depth.toString());
@@ -112,5 +118,11 @@ export async function fetchGraphNeighborhood(
   if (!response.ok) {
     throw new Error(`Failed to fetch graph neighborhood for ${isCode}.`);
   }
-  return response.json();
+  const data = await response.json();
+  const edges = Array.isArray(data.links) ? data.links : Array.isArray(data.edges) ? data.edges : [];
+  return {
+    nodes: Array.isArray(data.nodes) ? data.nodes : [],
+    links: edges,
+    edges: edges,
+  };
 }

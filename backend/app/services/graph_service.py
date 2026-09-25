@@ -153,7 +153,9 @@ class KnowledgeGraphService:
 
         return {
             "nodes": list(visited_nodes.values()),
-            "edges": matched_edges
+            "edges": matched_edges,
+            "links": matched_edges,
+            "root_is_code": is_code
         }
 
     def get_full_graph(self, limit: int = 200) -> Dict[str, Any]:
@@ -200,7 +202,7 @@ class KnowledgeGraphService:
                         "relation_label": "Normative Ref"
                     })
 
-        return {"nodes": nodes, "edges": edges}
+        return {"nodes": nodes, "edges": edges, "links": edges}
 
 graph_service = KnowledgeGraphService()
 

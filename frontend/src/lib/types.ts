@@ -89,6 +89,12 @@ export interface RecommendationResponse {
       type: string;
       relation_label: string;
     }>;
+    edges?: Array<{
+      source: string;
+      target: string;
+      type: string;
+      relation_label: string;
+    }>;
     total_nodes?: number;
     total_edges?: number;
   };

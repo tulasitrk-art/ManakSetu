@@ -25,9 +25,10 @@ interface Link {
 }
 
 interface GraphVisualizerProps {
-  data: {
-    nodes: Node[];
-    links: Link[];
+  data?: {
+    nodes?: Node[];
+    links?: Link[];
+    edges?: Link[];
   };
   focusNodeId?: string;
   onSelectNode?: (node: Node) => void;
@@ -52,7 +53,9 @@ export default function GraphVisualizer({
   const animationFrameRef = useRef<number>();
 
   useEffect(() => {
-    if (!data || !data.nodes || data.nodes.length === 0) return;
+    const rawNodes = data?.nodes || [];
+    const rawLinks = data?.links || (data as any)?.edges || [];
+    if (rawNodes.length === 0) return;
 
     // Clone and layout initial positions
     const width = 800;
@@ -60,8 +63,8 @@ export default function GraphVisualizer({
     const centerX = width / 2;
     const centerY = height / 2;
 
-    const nodes: Node[] = data.nodes.map((n, i) => {
-      const angle = (i / data.nodes.length) * 2 * Math.PI;
+    const nodes: Node[] = rawNodes.map((n, i) => {
+      const angle = (i / rawNodes.length) * 2 * Math.PI;
       const radius = i === 0 ? 0 : 160 + (i % 3) * 60;
       return {
         ...n,
@@ -72,7 +75,7 @@ export default function GraphVisualizer({
       };
     });
 
-    const links: Link[] = data.links.map((l) => ({ ...l }));
+    const links: Link[] = rawLinks.map((l: any) => ({ ...l }));
 
     nodesRef.current = nodes;
     linksRef.current = links;
@@ -347,7 +350,7 @@ export default function GraphVisualizer({
         </span>
         <span className="text-slate-300">|</span>
         <span className="text-slate-500 font-mono text-[11px]">
-          {data.nodes.length} Nodes • {data.links.length} Relations
+          {(data?.nodes?.length ?? nodesRef.current.length ?? 0)} Nodes • {(data?.links?.length ?? (data as any)?.edges?.length ?? linksRef.current.length ?? 0)} Relations
         </span>
       </div>
 

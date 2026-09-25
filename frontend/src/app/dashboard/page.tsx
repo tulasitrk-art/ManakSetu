@@ -399,8 +399,8 @@ export default function DashboardPage() {
 
               <GraphVisualizer
                 data={{
-                  nodes: recommendationsData.knowledge_graph_summary.nodes as any,
-                  links: recommendationsData.knowledge_graph_summary.links as any,
+                  nodes: (recommendationsData.knowledge_graph_summary.nodes || []) as any,
+                  links: (recommendationsData.knowledge_graph_summary.links || recommendationsData.knowledge_graph_summary.edges || []) as any,
                 }}
                 focusNodeId={recommendationsData.knowledge_graph_summary.root_is_code}
               />
