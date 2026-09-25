@@ -1,0 +1,32 @@
+services:
+  # 1. FastAPI Python Backend Service
+  - type: web
+    name: manaksetu-backend
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: "pip install -r backend/requirements.txt"
+    startCommand: "uvicorn main:app --app-dir backend --host 0.0.0.0 --port $PORT"
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ENVIRONMENT
+        value: production
+      - key: BACKEND_CORS_ORIGINS
+        value: "*"
+
+  # 2. Next.js Frontend Web Service
+  - type: web
+    name: manaksetu-frontend
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: frontend
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm run start"
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: NEXT_PUBLIC_API_URL
+        value: "https://manaksetu-backend.onrender.com"
