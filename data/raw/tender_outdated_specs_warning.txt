@@ -1,0 +1,16 @@
+TENDER NOTICE: MUNICIPAL CORPORATION INFRASTRUCTURE PROJECT (DRAFT REVIEW)
+Tender ID: MC/ENG/2026/CIVIL-884
+Project: Construction of Community Hall and Office Annex
+
+TECHNICAL SPECIFICATION CLAUSES (REVIEW REQUIRED):
+1. Plain and Reinforced Concrete:
+The structural design and RCC execution shall be carried out in accordance with IS 456:1978 (Third Revision) using working stress method.
+
+2. Steel Reinforcement:
+Cold twisted deformed (CTD) and high strength deformed steel bars shall conform to IS 1786:1985 Grade Fe 415.
+
+3. Structural Steel Roof Trusses:
+Steel fabrication of trusses and purlins shall be in accordance with IS 800:1984 using permissible stress design.
+
+4. Street Lighting Luminaires:
+Street lighting brackets and lamps shall conform to IS 10322 (Part 5/Sec 3) : 1987.

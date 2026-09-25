@@ -1,0 +1,277 @@
+[
+  {
+    "qco_id": "QCO-STEEL-2020",
+    "order_title": "Steel and Steel Products (Quality Control) Order, 2020",
+    "issuing_ministry": "Ministry of Steel",
+    "gazette_number": "S.O. 1678(E)",
+    "notification_date": "2020-05-27",
+    "effective_date": "2020-08-01",
+    "certification_scheme": "Scheme-I (ISI Mark)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 1786 : 2008",
+        "product_name": "High Strength Deformed Steel Bars and Wires (TMT) for Concrete Reinforcement"
+      },
+      {
+        "is_code": "IS 2062 : 2011",
+        "product_name": "Hot Rolled Medium and High Tensile Structural Steel"
+      },
+      {
+        "is_code": "IS 2830 : 2012",
+        "product_name": "Carbon Steel Cast Billet Ingots, Billets, Blooms and Slabs for Rerolling"
+      },
+      {
+        "is_code": "IS 277 : 2018",
+        "product_name": "Galvanized Steel Sheets (Plain and Corrugated)"
+      }
+    ],
+    "exemption_criteria": "Goods or articles manufactured for export or for special defense procurement as exempted by Central Government.",
+    "penalty_clause": "Imprisonment up to 2 years or fine up to Rs. 2,00,000/- or both under Section 29 of BIS Act 2016."
+  },
+  {
+    "qco_id": "QCO-ELEC-2020",
+    "order_title": "Electrical Equipment (Quality Control) Order, 2020",
+    "issuing_ministry": "Ministry of Heavy Industries & Public Enterprises",
+    "gazette_number": "S.O. 3857(E)",
+    "notification_date": "2020-10-27",
+    "effective_date": "2021-04-01",
+    "certification_scheme": "Scheme-I (ISI Mark)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 10322 (Part 5/Sec 3) : 2012",
+        "product_name": "Luminaires for Road and Street Lighting"
+      },
+      {
+        "is_code": "IS 10322 (Part 5/Sec 1) : 2012",
+        "product_name": "Fixed General Purpose Luminaires"
+      },
+      {
+        "is_code": "IS 10322 (Part 5/Sec 2) : 2012",
+        "product_name": "Recessed Luminaires"
+      },
+      {
+        "is_code": "IS 10322 (Part 5/Sec 5) : 2013",
+        "product_name": "Floodlights"
+      }
+    ],
+    "exemption_criteria": "Imported luminaire samples for R&D testing up to 10 units with prior BIS permission.",
+    "penalty_clause": "Any person who contravenes the provisions of this Order shall be punishable under the provisions of the Bureau of Indian Standards Act, 2016."
+  },
+  {
+    "qco_id": "QCO-TRANSFORMER-2014",
+    "order_title": "Distribution Transformers (Quality Control) Order, 2014",
+    "issuing_ministry": "Ministry of Heavy Industries",
+    "gazette_number": "S.O. 1399(E)",
+    "notification_date": "2014-05-28",
+    "effective_date": "2014-08-01",
+    "certification_scheme": "Scheme-I (ISI Mark)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 1180 (Part 1) : 2014",
+        "product_name": "Outdoor Type Oil-Immersed Distribution Transformers up to 2500 kVA, 33 kV"
+      }
+    ],
+    "exemption_criteria": "Transformers manufactured solely for export purposes.",
+    "penalty_clause": "Mandatory BIS ISI Mark and BEE Energy Efficiency Star Labeling compliance."
+  },
+  {
+    "qco_id": "QCO-PIPES-2020",
+    "order_title": "Pipes and Fittings (Quality Control) Order, 2020",
+    "issuing_ministry": "Department for Promotion of Industry and Internal Trade (DPIIT)",
+    "gazette_number": "S.O. 4452(E)",
+    "notification_date": "2020-12-04",
+    "effective_date": "2021-06-01",
+    "certification_scheme": "Scheme-I (ISI Mark)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 4984 : 2016",
+        "product_name": "High Density Polyethylene (HDPE) Pipes for Water Supply"
+      },
+      {
+        "is_code": "IS 4985 : 2021",
+        "product_name": "Unplasticized PVC (uPVC) Pipes for Potable Water Supplies"
+      },
+      {
+        "is_code": "IS 1239 (Part 1) : 2004",
+        "product_name": "Steel Tubes (GI and MS Pipes)"
+      }
+    ],
+    "exemption_criteria": "Micro and Small enterprises granted phased onboarding per DPIIT guidelines.",
+    "penalty_clause": "Non-compliant pipes seized under Section 18 of BIS Act 2016."
+  },
+  {
+    "qco_id": "QCO-CRO-MEITY-2012",
+    "order_title": "Electronics and Information Technology Goods (Compulsory Registration) Order, 2012 & 2021",
+    "issuing_ministry": "Ministry of Electronics and Information Technology (MeitY)",
+    "gazette_number": "S.O. 2357(E)",
+    "notification_date": "2012-10-03",
+    "effective_date": "2013-04-03",
+    "certification_scheme": "Scheme-II (CRS - Compulsory Registration Scheme)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 13252 (Part 1) : 2010",
+        "product_name": "Information Technology Equipment Safety (Laptops, Servers, Printers, CCTV Cameras)"
+      },
+      {
+        "is_code": "IS 15885 (Part 2/Sec 13) : 2012",
+        "product_name": "AC/DC Electronic Controlgear for LED Modules (LED Drivers)"
+      },
+      {
+        "is_code": "IS 16102 (Part 1) : 2012",
+        "product_name": "Self-Ballasted LED Lamps for General Lighting Services"
+      },
+      {
+        "is_code": "IS 16046 (Part 2) : 2018",
+        "product_name": "Lithium-ion Cells and Batteries for Portable Applications"
+      },
+      {
+        "is_code": "IS 16221 (Part 2) : 2015",
+        "product_name": "Solar Inverters / Power Converters for Photovoltaic Systems"
+      },
+      {
+        "is_code": "IS 16333 (Part 3) : 2022",
+        "product_name": "Mobile Phone Handsets - Indian Language Support"
+      },
+      {
+        "is_code": "IS 616 : 2017",
+        "product_name": "Audio, Video and Similar Electronic Apparatus (Smart TVs, IFPDs)"
+      }
+    ],
+    "exemption_criteria": "Prototype models imported strictly for demonstration and testing up to 50 units.",
+    "penalty_clause": "Prohibition of sale or import without valid BIS CRS Registration Number (R-XXXXXXXX)."
+  },
+  {
+    "qco_id": "QCO-SOLAR-MNRE-2017",
+    "order_title": "Solar Photovoltaics, Systems, Devices and Components Goods (Requirements for Compulsory Registration) Order, 2017",
+    "issuing_ministry": "Ministry of New and Renewable Energy (MNRE)",
+    "gazette_number": "S.O. 2920(E)",
+    "notification_date": "2017-09-05",
+    "effective_date": "2018-04-16",
+    "certification_scheme": "Scheme-II (CRS) & ALMM Enlistment",
+    "applicable_standards": [
+      {
+        "is_code": "IS 14286 : 2010",
+        "product_name": "Crystalline Silicon Terrestrial Photovoltaic (PV) Modules"
+      },
+      {
+        "is_code": "IS/IEC 61730 (Part 1 & 2) : 2004",
+        "product_name": "PV Module Safety Qualification"
+      },
+      {
+        "is_code": "IS 16221 (Part 2) : 2015",
+        "product_name": "Power Converters for use in Photovoltaic Power Systems (Inverters)"
+      },
+      {
+        "is_code": "IS 16077 : 2013",
+        "product_name": "Thin-Film Terrestrial Photovoltaic (PV) Modules"
+      }
+    ],
+    "exemption_criteria": "Off-grid devices under specific rural electrification pilot schemes.",
+    "penalty_clause": "Customs clearance blocked and grid synchronization prohibited for uncertified solar PV modules."
+  },
+  {
+    "qco_id": "QCO-FIRE-2020",
+    "order_title": "Fire Fighting Equipment (Quality Control) Order, 2020",
+    "issuing_ministry": "Department for Promotion of Industry and Internal Trade (DPIIT)",
+    "gazette_number": "S.O. 4120(E)",
+    "notification_date": "2020-11-18",
+    "effective_date": "2021-05-18",
+    "certification_scheme": "Scheme-I (ISI Mark)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 15683 : 2018",
+        "product_name": "Portable Fire Extinguishers"
+      },
+      {
+        "is_code": "IS 14609 : 2016",
+        "product_name": "Dry Chemical Powder for Fire Fighting (Class A, B, C)"
+      },
+      {
+        "is_code": "IS 4308 : 2019",
+        "product_name": "Dry Chemical Powder for Fire Fighting (Class B, C)"
+      }
+    ],
+    "exemption_criteria": "Extinguishers installed in marine ocean-going vessels under IMO/SOLAS certification.",
+    "penalty_clause": "Offence under BIS Act 2016."
+  },
+  {
+    "qco_id": "QCO-PPE-2021",
+    "order_title": "Personal Protective Equipment (Quality Control) Order, 2021 & Footwear QCO 2023",
+    "issuing_ministry": "DPIIT & Ministry of Textiles",
+    "gazette_number": "S.O. 5429(E) & S.O. 1245(E)",
+    "notification_date": "2021-12-28",
+    "effective_date": "2022-07-01",
+    "certification_scheme": "Scheme-I (ISI Mark)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 9473 : 2002",
+        "product_name": "Respiratory Protective Devices - Filtering Half Masks (FFP1, FFP2, FFP3 / N95)"
+      },
+      {
+        "is_code": "IS 2925 : 1984",
+        "product_name": "Industrial Safety Helmets"
+      },
+      {
+        "is_code": "IS 15298 (Part 2) : 2016",
+        "product_name": "Safety Footwear"
+      }
+    ],
+    "exemption_criteria": "Footwear exported under customs bonded warehouse.",
+    "penalty_clause": "Mandatory ISI license required for supply to government departments, armed forces, and public procurement."
+  },
+  {
+    "qco_id": "QCO-FOOD-WATER-2001",
+    "order_title": "Packaged Drinking Water Mandatory Certification Order",
+    "issuing_ministry": "Ministry of Consumer Affairs, Food & Public Distribution",
+    "gazette_number": "GSR 760(E)",
+    "notification_date": "2000-09-29",
+    "effective_date": "2001-03-29",
+    "certification_scheme": "Scheme-I (Mandatory ISI Mark)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 14543 : 2016",
+        "product_name": "Packaged Drinking Water (Other than Natural Mineral Water)"
+      },
+      {
+        "is_code": "IS 13428 : 2005",
+        "product_name": "Packaged Natural Mineral Water"
+      }
+    ],
+    "exemption_criteria": "None.",
+    "penalty_clause": "Criminal liability under Food Safety and Standards Act, 2006 and BIS Act, 2016."
+  },
+  {
+    "qco_id": "QCO-MED-MHD-2020",
+    "order_title": "Medical Devices & Electromedical Equipment Safety Order, 2020",
+    "issuing_ministry": "Ministry of Health & Family Welfare / DoCA",
+    "gazette_number": "G.S.R. 77(E)",
+    "notification_date": "2020-02-11",
+    "effective_date": "2020-04-01",
+    "certification_scheme": "Scheme-I / CDSCO Medical Device Regulatory License",
+    "applicable_standards": [
+      {
+        "is_code": "IS 13450 (Part 1) : 2018",
+        "product_name": "Medical Electrical Equipment - Part 1: General Requirements for Basic Safety and Essential Performance"
+      }
+    ],
+    "exemption_criteria": "Custom investigational medical devices for clinical trials under approved institutional ethics committee protocol.",
+    "penalty_clause": "Cognizable offence under Medical Devices Rules 2017 and Section 29 of BIS Act 2016."
+  },
+  {
+    "qco_id": "QCO-DISINFECTANT-2020",
+    "order_title": "Disinfectant Fluids (Quality Control) Order, 2020",
+    "issuing_ministry": "DPIIT & Ministry of Consumer Affairs",
+    "gazette_number": "S.O. 2102(E)",
+    "notification_date": "2020-06-18",
+    "effective_date": "2020-12-18",
+    "certification_scheme": "Scheme-I (Mandatory ISI Mark)",
+    "applicable_standards": [
+      {
+        "is_code": "IS 1061 : 1997",
+        "product_name": "Disinfectant Fluids, Phenolic Type (Phenyl - Grade 1, 2, 3)"
+      }
+    ],
+    "exemption_criteria": "Disinfectant concentrates formulated solely for laboratory analytical reagent purposes.",
+    "penalty_clause": "Prohibition of manufacture, stocking, or sale without valid BIS Standard Mark (ISI Mark)."
+  }
+]

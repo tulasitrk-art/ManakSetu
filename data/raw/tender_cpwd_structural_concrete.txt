@@ -1,0 +1,15 @@
+TENDER SPECIFICATION: CENTRAL PUBLIC WORKS DEPARTMENT (CPWD)
+NIT No: 44/EE/CD-II/CPWD/2026-27
+Name of Work: Construction of Multi-Storeyed Administrative Block (Basement + G + 9 Floors) at New Delhi
+
+SECTION 3: CONCRETE & STRUCTURAL STEEL SPECIFICATIONS
+3.1 Reinforced Cement Concrete (RCC):
+- All RCC works for foundations, columns, shear walls, beams, and slabs shall use Design Mix Concrete Grade M30 / M35 conforming to standard practice for plain and reinforced concrete.
+- Coarse aggregates shall be crushed blue granite stone graded from 20mm to 10mm. Manufactured sand (M-sand) conforming to aggregate specifications may be utilized.
+- Mix proportioning guidelines shall be followed to ensure target mean compressive strength of 38.25 N/mm2 at 28 days with water-binder ratio not exceeding 0.42.
+- Seismic detailing for Zone IV must incorporate 135-degree hooks with confinement hoops in critical column-beam joint regions.
+
+3.2 High Strength Steel Reinforcement (TMT Bars):
+- Reinforcement steel shall consist of Thermo-Mechanically Treated (TMT) bars of Grade Fe 500D / Fe 550D.
+- Minimum elongation of 16.0% and total elongation at maximum force (AgT) of at least 5.0% are mandatory.
+- Rebars must have mandatory BIS certification under the Steel & Steel Products Quality Control Order 2020.

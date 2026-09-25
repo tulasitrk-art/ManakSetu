@@ -1,0 +1,20 @@
+TENDER DOCUMENT: NATIONAL HIGHWAYS AUTHORITY OF INDIA (NHAI)
+Tender Reference No: NHAI/TECH/2026/LUM-092
+Project Title: Supply, Installation, Testing, and Commissioning of Energy-Efficient LED Highway Luminaires and Smart Street Poles on NH-48 Expressway
+
+1. TECHNICAL SPECIFICATIONS & SCOPE OF WORK:
+The contractor shall supply and install heavy-duty outdoor LED street lighting luminaires suitable for high-speed expressways and arterial highway corridors.
+- Operating Voltage: 120V - 277V AC, 50 Hz
+- Luminous Efficacy: Minimum 130 Lumens per Watt (lm/W)
+- Correlated Colour Temperature (CCT): 4000K to 5000K Neutral White
+- Ingress Protection: IP66 rated against torrential rain and dust ingress
+- Impact Rating: IK08 or higher pressure die-cast aluminium housing
+- Surge Protection Device (SPD): Inbuilt 10 kV / 10 kA surge suppression
+- Driver Electronic Controlgear: Constant current LED driver with power factor > 0.95 and THD < 10%
+- Earthing and Grounding: Pipe electrode earthing along highway median
+
+2. MANDATORY STANDARDS AND COMPLIANCE REQUIREMENTS:
+- The luminaires shall be compliant with the latest Indian Standards for road lighting.
+- The LED controlgear / driver shall possess valid BIS CRS registration under MeitY Compulsory Registration Scheme.
+- Bidder must submit valid BIS License (ISI Mark) under Electrical Equipment Quality Control Order 2020.
+- Routine and type test certificates from NABL accredited testing laboratory must be enclosed.
