@@ -1,167 +1,206 @@
 """
-Knowledge Graph Engine (Neo4j & In-Memory Graph Service)
-Manages the BIS standards graph schema, relationships:
-- (:Standard)-[:NORMATIVE_REFERENCE {relation_type}]->(:Standard)
-- (:Standard)-[:TEST_METHOD]->(:Standard)
-- (:Standard)-[:SUPERSEDED_BY]->(:Standard)
-- (:Standard)-[:MANDATED_BY]->(:QCO)
+Knowledge Graph Engine (On-Demand Lightweight Graph Service)
+Generates subgraphs, normative cross-references, test protocols, and statutory QCO links
+on-demand directly from the shared data loader with near-zero static memory overhead.
 """
-import json
-import os
 from typing import Dict, Any, List, Optional
-from app.core.config import settings
+from app.services.data_loader import get_standards, get_standards_by_code, get_qco_list
 
 class KnowledgeGraphService:
     def __init__(self):
-        self.nodes: Dict[str, Dict[str, Any]] = {}
-        self.edges: List[Dict[str, Any]] = []
-        self.adjacency: Dict[str, List[Dict[str, Any]]] = {}
-        self.build_graph()
+        pass
 
-    def build_graph(self):
-        path = settings.DATA_STANDARDS_PATH
-        if not os.path.exists(path):
-            path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data", "processed", "bis_standards.json")
-            
-        if os.path.exists(path):
-            with open(path, "r", encoding="utf-8") as f:
-                standards = json.load(f)
-
-            for std in standards:
-                code = std["is_code"]
-                self.nodes[code] = {
-                    "id": code,
-                    "label": std["title"],
-                    "type": "STANDARD",
-                    "status": std["status"],
-                    "division": std.get("department_division", ""),
-                    "qco_status": std.get("qco_status", "VOLUNTARY"),
-                    "mandatory_scheme": std.get("mandatory_cert_scheme", ""),
-                    "year": std.get("year_published"),
-                    "amendments": std.get("amendments_count", 0),
-                }
-                if code not in self.adjacency:
-                    self.adjacency[code] = []
-
-                # Add Normative References
-                for norm in std.get("normative_references", []):
-                    target_code = norm["is_code"]
-                    if target_code not in self.nodes:
-                        self.nodes[target_code] = {
-                            "id": target_code,
-                            "label": norm["title"],
-                            "type": "ALLIED_STANDARD",
-                            "status": "ACTIVE",
-                            "division": "Cross-Referenced",
-                            "qco_status": "VOLUNTARY",
-                            "mandatory_scheme": ""
-                        }
-                    edge = {
-                        "source": code,
-                        "target": target_code,
-                        "type": "NORMATIVE_REFERENCE",
-                        "relation_label": norm.get("type", "Normative Ref")
-                    }
-                    self.edges.append(edge)
-                    self.adjacency[code].append({"target": target_code, "type": "NORMATIVE_REFERENCE", "meta": norm})
-
-                # Add Test Methods
-                for test in std.get("test_methods", []):
-                    test_code = test["is_code"]
-                    if test_code not in self.nodes:
-                        self.nodes[test_code] = {
-                            "id": test_code,
-                            "label": test["title"],
-                            "type": "TEST_METHOD",
-                            "status": "ACTIVE",
-                            "division": "Testing Protocol",
-                            "qco_status": "TESTING",
-                            "mandatory_scheme": ""
-                        }
-                    edge = {
-                        "source": code,
-                        "target": test_code,
-                        "type": "TEST_METHOD",
-                        "relation_label": "Test Method"
-                    }
-                    self.edges.append(edge)
-                    self.adjacency[code].append({"target": test_code, "type": "TEST_METHOD", "meta": test})
-
-                # Add Superseded Edges
-                if std.get("superseded_by"):
-                    target_sup = std["superseded_by"]
-                    edge = {
-                        "source": code,
-                        "target": target_sup,
-                        "type": "SUPERSEDED_BY",
-                        "relation_label": "Superseded By (Active Version)"
-                    }
-                    self.edges.append(edge)
-                    self.adjacency[code].append({"target": target_sup, "type": "SUPERSEDED_BY", "meta": {}})
-
-                # Add QCO node if mandatory
-                if std.get("qco_details"):
-                    qco_info = std["qco_details"]
-                    qco_id = f"QCO: {qco_info.get('gazette_notification', 'Gazette Order')}"
-                    if qco_id not in self.nodes:
-                        self.nodes[qco_id] = {
-                            "id": qco_id,
-                            "label": qco_info.get("order_name", "Quality Control Order"),
-                            "type": "MANDATORY_QCO",
-                            "status": "STATUTORY",
-                            "division": qco_info.get("ministry", ""),
-                            "qco_status": "MANDATORY_QCO",
-                            "mandatory_scheme": qco_info.get("certification_scheme", "")
-                        }
-                    edge = {
-                        "source": code,
-                        "target": qco_id,
-                        "type": "MANDATED_BY",
-                        "relation_label": "Mandated by QCO"
-                    }
-                    self.edges.append(edge)
-                    self.adjacency[code].append({"target": qco_id, "type": "MANDATED_BY", "meta": qco_info})
+    @property
+    def standards_map(self) -> Dict[str, Dict[str, Any]]:
+        return get_standards_by_code()
 
     def get_standard_neighborhood(self, is_code: str, depth: int = 1) -> Dict[str, Any]:
         """
-        Retrieves subgraph centered at a given standard for visualizer and contextual analysis.
+        Retrieves subgraph centered at a given standard for visualizer and contextual analysis on-demand.
         """
-        visited_nodes = set()
-        matched_edges = []
+        stds_map = self.standards_map
+        visited_nodes: Dict[str, Dict[str, Any]] = {}
+        matched_edges: List[Dict[str, Any]] = []
         queue = [(is_code, 0)]
-        visited_nodes.add(is_code)
+
+        # If exact is_code not found, try prefix
+        root_std = stds_map.get(is_code)
+        if not root_std:
+            for k, v in stds_map.items():
+                if is_code.lower() in k.lower():
+                    root_std = v
+                    is_code = k
+                    break
+
+        if not root_std:
+            return {"nodes": [], "edges": []}
+
+        visited_codes = {is_code}
+        visited_nodes[is_code] = {
+            "id": is_code,
+            "label": root_std.get("title", is_code),
+            "type": "STANDARD",
+            "status": root_std.get("status", "ACTIVE"),
+            "division": root_std.get("department_division", ""),
+            "qco_status": root_std.get("qco_status", "VOLUNTARY"),
+            "mandatory_scheme": root_std.get("mandatory_cert_scheme", ""),
+            "year": root_std.get("year_published"),
+            "amendments": root_std.get("amendments_count", 0),
+        }
 
         while queue:
             curr, d = queue.pop(0)
             if d >= depth:
                 continue
 
-            for neighbor in self.adjacency.get(curr, []):
-                target = neighbor["target"]
+            curr_std = stds_map.get(curr)
+            if not curr_std:
+                continue
+
+            # 1. Normative References
+            for norm in curr_std.get("normative_references", []):
+                t_code = norm.get("is_code", "") if isinstance(norm, dict) else str(norm)
+                if not t_code:
+                    continue
+
+                if t_code not in visited_nodes:
+                    target_std = stds_map.get(t_code)
+                    visited_nodes[t_code] = {
+                        "id": t_code,
+                        "label": target_std.get("title") if target_std else norm.get("title", t_code) if isinstance(norm, dict) else t_code,
+                        "type": "ALLIED_STANDARD",
+                        "status": target_std.get("status", "ACTIVE") if target_std else "ACTIVE",
+                        "division": target_std.get("department_division", "Cross-Referenced") if target_std else "Cross-Referenced",
+                        "qco_status": target_std.get("qco_status", "VOLUNTARY") if target_std else "VOLUNTARY",
+                        "mandatory_scheme": ""
+                    }
+                    if d + 1 <= depth and t_code not in visited_codes:
+                        visited_codes.add(t_code)
+                        queue.append((t_code, d + 1))
+
                 matched_edges.append({
                     "source": curr,
-                    "target": target,
-                    "type": neighbor["type"],
-                    "relation_label": neighbor.get("meta", {}).get("type", neighbor["type"])
+                    "target": t_code,
+                    "type": "NORMATIVE_REFERENCE",
+                    "relation_label": norm.get("type", "Normative Ref") if isinstance(norm, dict) else "Normative Ref"
                 })
-                if target not in visited_nodes:
-                    visited_nodes.add(target)
-                    queue.append((target, d + 1))
 
-        sub_nodes = [self.nodes[n_id] for n_id in visited_nodes if n_id in self.nodes]
+            # 2. Test Methods
+            for test in curr_std.get("test_methods", []):
+                test_code = test.get("is_code", "") if isinstance(test, dict) else str(test)
+                if not test_code:
+                    continue
+
+                if test_code not in visited_nodes:
+                    visited_nodes[test_code] = {
+                        "id": test_code,
+                        "label": test.get("title", test_code) if isinstance(test, dict) else test_code,
+                        "type": "TEST_METHOD",
+                        "status": "ACTIVE",
+                        "division": "Testing Protocol",
+                        "qco_status": "TESTING",
+                        "mandatory_scheme": ""
+                    }
+
+                matched_edges.append({
+                    "source": curr,
+                    "target": test_code,
+                    "type": "TEST_METHOD",
+                    "relation_label": "Test Method"
+                })
+
+            # 3. Superseded Standard
+            if curr_std.get("superseded_by"):
+                sup_code = curr_std["superseded_by"]
+                if sup_code not in visited_nodes:
+                    target_std = stds_map.get(sup_code)
+                    visited_nodes[sup_code] = {
+                        "id": sup_code,
+                        "label": target_std.get("title", sup_code) if target_std else sup_code,
+                        "type": "STANDARD",
+                        "status": "ACTIVE",
+                        "division": "Active Replacement",
+                        "qco_status": "VOLUNTARY",
+                        "mandatory_scheme": ""
+                    }
+                matched_edges.append({
+                    "source": curr,
+                    "target": sup_code,
+                    "type": "SUPERSEDED_BY",
+                    "relation_label": "Superseded By (Active Version)"
+                })
+
+            # 4. Mandatory QCO Link
+            if curr_std.get("qco_details"):
+                qco_info = curr_std["qco_details"]
+                qco_id = f"QCO: {qco_info.get('gazette_notification', 'Gazette Order')}"
+                if qco_id not in visited_nodes:
+                    visited_nodes[qco_id] = {
+                        "id": qco_id,
+                        "label": qco_info.get("order_name", "Quality Control Order"),
+                        "type": "MANDATORY_QCO",
+                        "status": "STATUTORY",
+                        "division": qco_info.get("ministry", "Govt of India"),
+                        "qco_status": "MANDATORY_QCO",
+                        "mandatory_scheme": qco_info.get("certification_scheme", "")
+                    }
+                matched_edges.append({
+                    "source": curr,
+                    "target": qco_id,
+                    "type": "MANDATED_BY",
+                    "relation_label": "Mandated by QCO"
+                })
+
         return {
-            "root_is_code": is_code,
-            "nodes": sub_nodes,
-            "links": matched_edges,
-            "total_nodes": len(sub_nodes),
-            "total_edges": len(matched_edges)
+            "nodes": list(visited_nodes.values()),
+            "edges": matched_edges
         }
 
-    def get_full_graph(self) -> Dict[str, Any]:
-        """Returns the entire graph for the global visualizer."""
-        return {
-            "nodes": list(self.nodes.values()),
-            "links": self.edges
-        }
+    def get_full_graph(self, limit: int = 200) -> Dict[str, Any]:
+        """Returns representative graph overview without overloading memory or browser."""
+        standards = get_standards()[:limit]
+        nodes = []
+        edges = []
+        node_ids = set()
+
+        for s in standards:
+            code = s["is_code"]
+            if code not in node_ids:
+                node_ids.add(code)
+                nodes.append({
+                    "id": code,
+                    "label": s["title"],
+                    "type": "STANDARD",
+                    "status": s.get("status", "ACTIVE"),
+                    "division": s.get("department_division", ""),
+                    "qco_status": s.get("qco_status", "VOLUNTARY"),
+                    "mandatory_scheme": s.get("mandatory_cert_scheme", ""),
+                    "year": s.get("year_published"),
+                    "amendments": s.get("amendments_count", 0),
+                })
+
+            for norm in s.get("normative_references", []):
+                t_code = norm.get("is_code") if isinstance(norm, dict) else str(norm)
+                if t_code:
+                    if t_code not in node_ids:
+                        node_ids.add(t_code)
+                        nodes.append({
+                            "id": t_code,
+                            "label": norm.get("title", t_code) if isinstance(norm, dict) else t_code,
+                            "type": "ALLIED_STANDARD",
+                            "status": "ACTIVE",
+                            "division": "Cross-Referenced",
+                            "qco_status": "VOLUNTARY",
+                            "mandatory_scheme": ""
+                        })
+                    edges.append({
+                        "source": code,
+                        "target": t_code,
+                        "type": "NORMATIVE_REFERENCE",
+                        "relation_label": "Normative Ref"
+                    })
+
+        return {"nodes": nodes, "edges": edges}
 
 graph_service = KnowledgeGraphService()
+
