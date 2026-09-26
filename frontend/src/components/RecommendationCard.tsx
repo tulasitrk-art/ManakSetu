@@ -20,6 +20,7 @@ import {
 import { PrimaryRecommendation } from "@/lib/types";
 import ComplianceBadge from "./ComplianceBadge";
 import { useLanguage } from "@/context/LanguageContext";
+import { translateRationale } from "@/lib/translations";
 
 interface RecommendationCardProps {
   rec: PrimaryRecommendation;
@@ -32,7 +33,7 @@ export default function RecommendationCard({
   rank,
   onUpgradeStandard,
 }: RecommendationCardProps) {
-  const { t, translateTerm } = useLanguage();
+  const { language, t, translateTerm } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [showAllied, setShowAllied] = useState(true);
   const [showTesting, setShowTesting] = useState(false);
@@ -83,7 +84,7 @@ export default function RecommendationCard({
                 )}
               </div>
               <p className="text-xs text-slate-500 font-medium">
-                {translateTerm(std.department_division)} {std.section_committee ? `• ${std.section_committee}` : ""}
+                {translateTerm(std.department_division)} {std.section_committee ? `• ${translateTerm(std.section_committee)}` : ""}
               </p>
             </div>
           </div>
@@ -110,13 +111,13 @@ export default function RecommendationCard({
 
       {/* Main Body */}
       <div className="p-5 space-y-4">
-        {/* Title */}
+        {/* Title & Scope */}
         <div>
           <h4 className="text-base font-semibold text-slate-800 leading-snug">
-            {std.title}
+            {translateTerm(std.title)}
           </h4>
           <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-            {std.scope_description}
+            {translateTerm(std.scope_description)}
           </p>
         </div>
 
@@ -125,14 +126,14 @@ export default function RecommendationCard({
           <Info className="w-4 h-4 text-maroon-700 flex-shrink-0 mt-0.5" />
           <div>
             <strong className="text-maroon-900 font-semibold">{t("nav_recommender", "Recommendation")}: </strong>
-            <span>{rec.relevance_rationale}</span>
+            <span>{translateRationale(language, rec.relevance_rationale)}</span>
           </div>
         </div>
 
         {/* Version & Amendments Metadata */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs py-2 border-y border-slate-100">
           <div className="bg-slate-50 p-2 rounded border border-slate-200/60">
-            <span className="text-slate-400 block text-[10px] uppercase">Published</span>
+            <span className="text-slate-400 block text-[10px] uppercase">{t("published", "Published")}</span>
             <span className="font-semibold text-slate-800">{std.year_published || "N/A"}</span>
           </div>
           <div className="bg-slate-50 p-2 rounded border border-slate-200/60">
@@ -144,7 +145,7 @@ export default function RecommendationCard({
             <span className="font-semibold text-slate-800">{std.amendments_count}</span>
           </div>
           <div className="bg-slate-50 p-2 rounded border border-slate-200/60">
-            <span className="text-slate-400 block text-[10px] uppercase">Scheme</span>
+            <span className="text-slate-400 block text-[10px] uppercase">{t("scheme", "Scheme")}</span>
             <span className="font-semibold text-maroon-800">{std.mandatory_cert_scheme ? translateTerm(std.mandatory_cert_scheme) : translateTerm("VOLUNTARY")}</span>
           </div>
         </div>
@@ -187,13 +188,13 @@ export default function RecommendationCard({
           <div className="bg-amber-50/70 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 space-y-1">
             <div className="flex items-center gap-1.5 font-bold text-amber-950">
               <ShieldCheck className="w-4 h-4 text-amber-700" />
-              <span>{t("gazette_notification", "Gazette Notification")}: {std.qco_details.order_name}</span>
+              <span>{t("gazette_notification", "Gazette Notification")}: {translateTerm(std.qco_details.order_name)}</span>
             </div>
             <p className="text-[11px] text-amber-800">
               <strong>Order Ref:</strong> {std.qco_details.gazette_notification} • <strong>{t("enforcement_date", "Enforcement Date")}:</strong> {std.qco_details.enforcement_date}
             </p>
             <p className="text-[11px] text-amber-800">
-              <strong>{t("penal_clause", "Statutory Penalty")}:</strong> {std.qco_details.penal_action}
+              <strong>{t("penal_clause", "Statutory Penalty")}:</strong> {translateTerm(std.qco_details.penal_action)}
             </p>
           </div>
         )}
@@ -221,11 +222,11 @@ export default function RecommendationCard({
                   >
                     <div>
                       <span className="font-semibold text-slate-900">{norm.is_code}</span>
-                      <span className="text-slate-600 ml-2">{norm.title}</span>
+                      <span className="text-slate-600 ml-2">{translateTerm(norm.title)}</span>
                     </div>
                     {norm.type && (
                       <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-slate-200 text-slate-700 self-start sm:self-auto">
-                        {norm.type}
+                        {translateTerm(norm.type)}
                       </span>
                     )}
                   </div>
@@ -259,7 +260,7 @@ export default function RecommendationCard({
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mt-0.5 flex-shrink-0" />
                     <div>
                       <span className="font-semibold text-slate-900">{test.is_code}: </span>
-                      <span className="text-slate-600">{test.title}</span>
+                      <span className="text-slate-600">{translateTerm(test.title)}</span>
                     </div>
                   </div>
                 ))}
@@ -297,7 +298,7 @@ export default function RecommendationCard({
               </button>
             </div>
             <p className="font-mono text-[11px] text-slate-300 leading-relaxed bg-slate-950/60 p-2.5 rounded border border-slate-800 select-all">
-              {std.recommended_tender_clause}
+              {translateTerm(std.recommended_tender_clause)}
             </p>
           </div>
         )}

@@ -47,8 +47,9 @@ async def get_recommendations(payload: RecommendationRequest):
             scheme_name = std.get("mandatory_cert_scheme") or qco_info.get("scheme", "Mandatory Scheme")
             mandatory_schemes.add(scheme_name)
 
-        # Generate LLM technical rationale
-        rationale = llm_reasoning.generate_recommendation_rationale(translated_query, std, score)
+        # Generate LLM technical rationale in the requested or detected Indic language
+        target_lang = payload.language if (payload.language and payload.language != "en") else (detected_code if detected_code != "en" else "en")
+        rationale = llm_reasoning.generate_recommendation_rationale(translated_query, std, score, lang=target_lang)
 
         # Tender clause
         if std.get("recommended_tender_clause"):

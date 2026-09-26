@@ -170,7 +170,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "Procurement Pillars",
     official_portals: "Official Portals",
     copyright_text: "© 2026 Department of Consumer Affairs, Ministry of Consumer Affairs, Food & Public Distribution, Govt. of India.",
-    portal_release: "Official Bureau of Indian Standards (BIS) Recommendation Portal • v1.0.0 Production Release"
+    portal_release: "Official Bureau of Indian Standards (BIS) Recommendation Portal • v1.0.0 Production Release",
+    published: "Published",
+    scheme: "Scheme",
+    status: "Status",
+    standard_code: "Standard Code",
+    title_and_scope: "Title & Scope",
+    confidence: "Confidence",
+    division: "Division",
+    standards: "Standards",
+    badge_mandatory_qco: "Mandatory QCO (ISI Scheme-I)",
+    badge_compulsory_crs: "Compulsory CRS (Scheme-II)",
+    badge_superseded: "Superseded / Withdrawn",
+    badge_hallmarking: "Mandatory Hallmarking",
+    badge_voluntary: "Voluntary Standard"
   },
 
   te: {
@@ -314,7 +327,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "ప్రొక్యూర్మెంట్ విభాగాలు",
     official_portals: "అధికారిక పోర్టల్స్",
     copyright_text: "© 2026 వినియోగదారుల వ్యవహారాల శాఖ, భారత ప్రభుత్వం.",
-    portal_release: "అధికారిక భారతీయ ప్రమాణాల బ్యూరో (BIS) సిఫార్సు పోర్టల్ • వెర్షన్ 1.0.0"
+    portal_release: "అధికారిక భారతీయ ప్రమాణాల బ్యూరో (BIS) సిఫార్సు పోర్టల్ • వెర్షన్ 1.0.0",
+    published: "ప్రచురించబడిన సంవత్సరం",
+    scheme: "పథకం / స్కీమ్",
+    status: "స్థితి (Status)",
+    standard_code: "ప్రమాణ కోడ్ (IS Code)",
+    title_and_scope: "శీర్షిక & పరిధి",
+    confidence: "విశ్వసనీయత",
+    division: "విభాగం (Division)",
+    standards: "ప్రమాణాలు",
+    badge_mandatory_qco: "తప్పనిసరి QCO (ISI పథకం-I)",
+    badge_compulsory_crs: "తప్పనిసరి CRS (స్కీమ్-II)",
+    badge_superseded: "రద్దు చేయబడింది / ఉపసంహరించబడింది",
+    badge_hallmarking: "తప్పనిసరి హాల్‌మార్కింగ్",
+    badge_voluntary: "స్వచ్ఛంద ప్రామాణికం"
   },
 
   hi: {
@@ -458,7 +484,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "खरीद के मुख्य स्तंभ",
     official_portals: "आधिकारिक पोर्टल्स",
     copyright_text: "© 2026 उपभोक्ता मामले विभाग, भारत सरकार।",
-    portal_release: "आधिकारिक भारतीय मानक ब्यूरो (BIS) अनुशंसा पोर्टल • v1.0.0"
+    portal_release: "आधिकारिक भारतीय मानक ब्यूरो (BIS) अनुशंसा पोर्टल • v1.0.0",
+    published: "प्रकाशित वर्ष",
+    scheme: "प्रमाणीकरण योजना",
+    status: "स्थिति (Status)",
+    standard_code: "मानक कोड (IS Code)",
+    title_and_scope: "शीर्षक और कार्यक्षेत्र",
+    confidence: "सटीकता / विश्वास",
+    division: "प्रभाग (Division)",
+    standards: "मानक",
+    badge_mandatory_qco: "अनिवार्य QCO (ISI स्कीम-I)",
+    badge_compulsory_crs: "अनिवार्य CRS (स्कीम-II)",
+    badge_superseded: "अधिक्रमित / वापस लिया गया",
+    badge_hallmarking: "अनिवार्य हॉलमार्किंग",
+    badge_voluntary: "स्वैच्छिक मानक"
   },
 
   mr: {
@@ -602,7 +641,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "खरेदीचे मुख्य स्तंभ",
     official_portals: "अधिकृत पोर्टल्स",
     copyright_text: "© 2026 ग्राहक व्यवहार विभाग, भारत सरकार.",
-    portal_release: "अधिकृत भारतीय मानक ब्युरो (BIS) शिफारस पोर्टल • v1.0.0"
+    portal_release: "अधिकृत भारतीय मानक ब्युरो (BIS) शिफारस पोर्टल • v1.0.0",
+    published: "प्रकाशित वर्ष",
+    scheme: "प्रमाणीकरण योजना",
+    status: "स्थिती (Status)",
+    standard_code: "मानक कोड (IS Code)",
+    title_and_scope: "शीर्षक आणि व्याप्ती",
+    confidence: "अचूकता / विश्वास",
+    division: "विभाग (Division)",
+    standards: "मानके",
+    badge_mandatory_qco: "अनिवार्य QCO (ISI योजना-I)",
+    badge_compulsory_crs: "अनिवार्य CRS (योजना-II)",
+    badge_superseded: "अधिक्रमित / मागे घेतलेले",
+    badge_hallmarking: "अनिवार्य हॉलमार्किंग",
+    badge_voluntary: "ऐच्छिक मानक"
   },
 
   ta: {
@@ -746,7 +798,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "கொள்முதல் தூண்கள்",
     official_portals: "அதிகாரப்பூர்வ தளங்கள்",
     copyright_text: "© 2026 நுகர்வோர் விவகாரங்கள் துறை, இந்திய அரசு.",
-    portal_release: "அதிகாரப்பூர்வ இந்திய தரநிலைகள் பணியக (BIS) பரிந்துரை தளம் • v1.0.0"
+    portal_release: "அதிகாரப்பூர்வ இந்திய தரநிலைகள் பணியக (BIS) பரிந்துரை தளம் • v1.0.0",
+    published: "வெளியிடப்பட்டது",
+    scheme: "சான்றிதழ் திட்டம்",
+    status: "நிலை (Status)",
+    standard_code: "தரநிலைக் குறியீடு (IS Code)",
+    title_and_scope: "தலைப்பு & நோக்கம்",
+    confidence: "நம்பகத்தன்மை",
+    division: "பிரிவு (Division)",
+    standards: "தரநிலைகள்",
+    badge_mandatory_qco: "கட்டாய QCO (ISI திட்டம்-I)",
+    badge_compulsory_crs: "கட்டாய CRS (திட்டம்-II)",
+    badge_superseded: "மாற்றப்பட்டது / திரும்பப் பெறப்பட்டது",
+    badge_hallmarking: "கட்டாய ஹால்மார்க்கிங்",
+    badge_voluntary: "விருப்ப தரநிலை"
   },
 
   gu: {
@@ -890,7 +955,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "પ્રાપ્તિના સ્તંભો",
     official_portals: "સત્તાવાર પોર્ટલ",
     copyright_text: "© 2026 ગ્રાહક બાબતોનો વિભાગ, ભારત સરકાર.",
-    portal_release: "સત્તાવાર બ્યુરો ઓફ ઇન્ડિયન સ્ટાન્ડર્ડ્સ (BIS) ભલામણ પોર્ટલ • v1.0.0"
+    portal_release: "સત્તાવાર બ્યુરો ઓફ ઇન્ડિયન સ્ટાન્ડર્ડ્સ (BIS) ભલામણ પોર્ટલ • v1.0.0",
+    published: "પ્રકાશિત વર્ષ",
+    scheme: "પ્રમાણીકરણ યોજના",
+    status: "સ્થિતિ (Status)",
+    standard_code: "માનક કોડ (IS Code)",
+    title_and_scope: "શીર્ષક અને કાર્યક્ષેત્ર",
+    confidence: "વિશ્વાસપાત્રતા",
+    division: "વિભાગ (Division)",
+    standards: "ધોરણો",
+    badge_mandatory_qco: "ફરજિયાત QCO (ISI યોજના-I)",
+    badge_compulsory_crs: "ફરજિયાત CRS (યોજના-II)",
+    badge_superseded: "અધિક્રમિત / પાછું ખેંચાયેલ",
+    badge_hallmarking: "ફરજિયાત હોલમાર્કિંગ",
+    badge_voluntary: "સ્વૈચ્છિક માનક"
   },
 
   bn: {
@@ -1034,7 +1112,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "ক্রয়ের মূল স্তম্ভ",
     official_portals: "অফিসিয়াল পোর্টাল",
     copyright_text: "© 2026 ভোক্তা বিষয়ক বিভাগ, ভারত সরকার।",
-    portal_release: "অফিসিয়াল ব্যুরো অফ ইন্ডিয়ান স্ট্যান্ডার্ডস (BIS) সুপারিশ পোর্টাল • v1.0.0"
+    portal_release: "অফিসিয়াল ব্যুরো অফ ইন্ডিয়ান স্ট্যান্ডার্ডস (BIS) সুপারিশ পোর্টাল • v1.0.0",
+    published: "প্রকাশিত বছর",
+    scheme: "সার্টিফিকেশন স্কিম",
+    status: "স্থিতি (Status)",
+    standard_code: "মানক কোড (IS Code)",
+    title_and_scope: "শিরোনাম ও পরিধি",
+    confidence: "নির্ভুলতা",
+    division: "বিভাগ (Division)",
+    standards: "মানকসমূহ",
+    badge_mandatory_qco: "বাধ্যতামূলক QCO (ISI স্কিম-I)",
+    badge_compulsory_crs: "বাধ্যতামূলক CRS (স্কিম-II)",
+    badge_superseded: "বাতিলকৃত / প্রত্যাহার করা",
+    badge_hallmarking: "বাধ্যতামূলক হলমার্কিং",
+    badge_voluntary: "ঐচ্ছিক মানক"
   },
 
   kn: {
@@ -1178,7 +1269,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "ಖರೀದಿಯ ಮುಖ್ಯ ಆಧಾರಸ್ತಂಭಗಳು",
     official_portals: "ಅಧಿಕೃತ ಪೋರ್ಟಲ್‌ಗಳು",
     copyright_text: "© 2026 ಗ್ರಾಹಕ ವ್ಯವಹಾರಗಳ ಇಲಾಖೆ, ಭಾರತ ಸರ್ಕಾರ.",
-    portal_release: "ಅಧಿಕೃತ ಭಾರತೀಯ ಗುಣಮಟ್ಟ ಬ್ಯೂರೋ (BIS) ಶಿಫಾರಸು ಪೋರ್ಟಲ್ • v1.0.0"
+    portal_release: "ಅಧಿಕೃತ ಭಾರತೀಯ ಗುಣಮಟ್ಟ ಬ್ಯೂರೋ (BIS) ಶಿಫಾರಸು ಪೋರ್ಟಲ್ • v1.0.0",
+    published: "ಪ್ರಕಟವಾದ ವರ್ಷ",
+    scheme: "ಪ್ರಮಾಣೀಕರಣ ಯೋಜನೆ",
+    status: "ಸ್ಥಿತಿ (Status)",
+    standard_code: "ಮಾನದಂಡ ಕೋಡ್ (IS Code)",
+    title_and_scope: "ಶೀರ್ಷಿಕೆ ಮತ್ತು ವ್ಯಾಪ್ತಿ",
+    confidence: "ವಿಶ್ವಾಸಾರ್ಹತೆ",
+    division: "ವಿಭಾಗ (Division)",
+    standards: "ಮಾನದಂಡಗಳು",
+    badge_mandatory_qco: "ಕಡ್ಡಾಯ QCO (ISI ಯೋಜನೆ-I)",
+    badge_compulsory_crs: "ಕಡ್ಡಾಯ CRS (ಯೋಜನೆ-II)",
+    badge_superseded: "ರದ್ದುಗೊಂಡಿದೆ / ಹಿಂಪಡೆಯಲಾಗಿದೆ",
+    badge_hallmarking: "ಕಡ್ಡಾಯ ಹಾಲ್‌ಮಾರ್ಕಿಂಗ್",
+    badge_voluntary: "ಐಚ್ಛಿಕ ಮಾನದಂಡ"
   },
 
   ml: {
@@ -1322,7 +1426,20 @@ export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
     procurement_pillars: "സംഭരണ സ്തംഭങ്ങൾ",
     official_portals: "ഔദ്യോഗിക പോർട്ടലുകൾ",
     copyright_text: "© 2026 ഉപഭോക്തൃകാര്യ വകുപ്പ്, ഭാരത സർക്കാർ.",
-    portal_release: "ഔദ്യോഗിക ബ്യൂറോ ഓഫ് ഇന്ത്യൻ സ്റ്റാൻഡേർഡ്സ് (BIS) ശുപാർശ പോർട്ടൽ • v1.0.0"
+    portal_release: "ഔദ്യോഗിക ബ്യൂറോ ഓഫ് ഇന്ത്യൻ സ്റ്റാൻഡേർഡ്സ് (BIS) ശുപാർശ പോർട്ടൽ • v1.0.0",
+    published: "പ്രസിദ്ധീകരിച്ച വർഷം",
+    scheme: "സർട്ടിഫിക്കേഷൻ സ്കീം",
+    status: "നില (Status)",
+    standard_code: "സ്റ്റാൻഡേർഡ് കോഡ് (IS Code)",
+    title_and_scope: "ശീർഷകവും പരിധിയും",
+    confidence: "വിശ്വാസ്യത",
+    division: "ഡിവിഷൻ (Division)",
+    standards: "മാനദണ്ഡങ്ങൾ",
+    badge_mandatory_qco: "നിർബന്ധിത QCO (ISI സ്കീം-I)",
+    badge_compulsory_crs: "നിർബന്ധിത CRS (സ്കീം-II)",
+    badge_superseded: "റദ്ദാക്കിയത് / പിൻവലിച്ചത്",
+    badge_hallmarking: "നിർബന്ധിത ഹാൾമാർക്കിംഗ്",
+    badge_voluntary: "ഐച്ഛിക നിലവാരം"
   }
 };
 
@@ -1460,6 +1577,256 @@ export const DOMAIN_TERMS: Record<string, Record<string, string>> = {
     bn: "স্বেচ্ছাসেবী / প্রস্তাবিত",
     kn: "ಐಚ್ಛಿಕ / ಶಿಫಾರಸು ಮಾಡಲಾದ",
     ml: "ഐച്ഛികം / ശുപാർശ ചെയ്തത്"
+  },
+  "Scheme-I (ISI Mark)": {
+    te: "స్కీమ్-I (ISI మార్క్)",
+    hi: "स्कीम-I (ISI मार्क)",
+    mr: "योजना-I (ISI मार्क)",
+    ta: "திட்டம்-I (ISI குறி)",
+    gu: "યોજના-I (ISI માર્ક)",
+    bn: "স্কিম-I (ISI চিহ্ন)",
+    kn: "ಯೋಜನೆ-I (ISI ಮಾರ್ಕ್)",
+    ml: "സ്കീം-I (ISI മാർക്ക്)"
+  },
+  "Scheme-II (CRS)": {
+    te: "స్కీమ్-II (CRS)",
+    hi: "स्कीम-II (CRS)",
+    mr: "योजना-II (CRS)",
+    ta: "திட்டம்-II (CRS)",
+    gu: "યોજના-II (CRS)",
+    bn: "স্কিম-II (CRS)",
+    kn: "ಯೋಜನೆ-II (CRS)",
+    ml: "സ്കീം-II (CRS)"
+  },
+  "Mandatory QCO (ISI Scheme-I)": {
+    te: "తప్పనిసరి QCO (ISI పథకం-I)",
+    hi: "अनिवार्य QCO (ISI स्कीम-I)",
+    mr: "अनिवार्य QCO (ISI योजना-I)",
+    ta: "கட்டாய QCO (ISI திட்டம்-I)",
+    gu: "ફરજિયાત QCO (ISI યોજના-I)",
+    bn: "বাধ্যতামূলক QCO (ISI স্কিম-I)",
+    kn: "ಕಡ್ಡಾಯ QCO (ISI ಯೋಜನೆ-I)",
+    ml: "നിർബന്ധിത QCO (ISI സ്കീം-I)"
+  },
+  "Compulsory CRS (Scheme-II)": {
+    te: "తప్పనిసరి CRS (స్కీమ్-II)",
+    hi: "अनिवार्य CRS (स्कीम-II)",
+    mr: "अनिवार्य CRS (योजना-II)",
+    ta: "கட்டாய CRS (திட்டம்-II)",
+    gu: "ફરજિયાત CRS (યોજના-II)",
+    bn: "বাধ্যতামূলক CRS (স্কিম-II)",
+    kn: "ಕಡ್ಡಾಯ CRS (ಯೋಜನೆ-II)",
+    ml: "നിർബന്ധിത CRS (സ്കീം-II)"
+  },
+  "Superseded / Withdrawn": {
+    te: "రద్దు చేయబడింది / ఉపసంహరించబడింది",
+    hi: "अधिक्रमित / वापस लिया गया",
+    mr: "अधिक्रमित / मागे घेतलेले",
+    ta: "மாற்றப்பட்டது / திரும்பப் பெறப்பட்டது",
+    gu: "અધિક્રમિત / પાછું ખેંચાયેલ",
+    bn: "বাতিলকৃত / প্রত্যাহার করা",
+    kn: "ರದ್ದುಗೊಂಡಿದೆ / ಹಿಂಪಡೆಯಲಾಗಿದೆ",
+    ml: "റദ്ദാക്കിയത് / പിൻവലിച്ചത്"
+  },
+  "Mandatory Hallmarking": {
+    te: "తప్పనిసరి హాల్‌మార్కింగ్",
+    hi: "अनिवार्य हॉलमार्किंग",
+    mr: "अनिवार्य हॉलमार्किंग",
+    ta: "கட்டாய ஹால்மார்க்கிங்",
+    gu: "ફરજિયાત હોલમાર્કિંગ",
+    bn: "বাধ্যতামূলক হলমার্কিং",
+    kn: "ಕಡ್ಡಾಯ ಹಾಲ್‌ಮಾರ್ಕಿಂಗ್",
+    ml: "നിർബന്ധിത ഹാൾമാർക്കിംഗ്"
+  },
+  "Voluntary Standard": {
+    te: "స్వచ్ఛంద ప్రామాణికం",
+    hi: "स्वैच्छिक मानक",
+    mr: "ऐच्छिक मानक",
+    ta: "விருப்ப தரநிலை",
+    gu: "સ્વૈચ્છિક માનક",
+    bn: "ঐচ্ছিক মানক",
+    kn: "ಐಚ್ಛಿಕ ಮಾನದಂಡ",
+    ml: "ഐച്ഛിക നിലവാരം"
+  },
+  "COMPONENT_SAFETY": {
+    te: "భాగాల భద్రత (COMPONENT_SAFETY)",
+    hi: "घटक सुरक्षा (COMPONENT_SAFETY)",
+    mr: "घटक सुरक्षा (COMPONENT_SAFETY)",
+    ta: "கூறு பாதுகாப்பு (COMPONENT_SAFETY)",
+    gu: "ઘટક સુરક્ષા (COMPONENT_SAFETY)",
+    bn: "উপাদান সুরক্ষা (COMPONENT_SAFETY)",
+    kn: "ಘಟಕ ಸುರಕ್ಷತೆ (COMPONENT_SAFETY)",
+    ml: "ഘടക സുരക്ഷ (COMPONENT_SAFETY)"
+  },
+  "PERFORMANCE": {
+    te: "పనితీరు (PERFORMANCE)",
+    hi: "प्रदर्शन (PERFORMANCE)",
+    mr: "कामगिरी (PERFORMANCE)",
+    ta: "செயல்திறன் (PERFORMANCE)",
+    gu: "પ્રદર્શન (PERFORMANCE)",
+    bn: "কার্যকারিতা (PERFORMANCE)",
+    kn: "ಕಾರ್ಯಕ್ಷಮತೆ (PERFORMANCE)",
+    ml: "പ്രകടനം (PERFORMANCE)"
+  },
+  "TEST_METHOD": {
+    te: "పరీక్షా విధానం (TEST_METHOD)",
+    hi: "परीक्षण विधि (TEST_METHOD)",
+    mr: "चाचणी पद्धत (TEST_METHOD)",
+    ta: "சோதனை முறை (TEST_METHOD)",
+    gu: "પરીક્ષણ પદ્ધતિ (TEST_METHOD)",
+    bn: "পরীক্ষা পদ্ধতি (TEST_METHOD)",
+    kn: "ಪರೀಕ್ಷಾ ವಿಧಾನ (TEST_METHOD)",
+    ml: "പരിശോധനാ രീതി (TEST_METHOD)"
+  },
+  "INSTALLATION_SAFETY": {
+    te: "ఇన్‌స్టాలేషన్ భద్రత (INSTALLATION_SAFETY)",
+    hi: "स्थापना सुरक्षा (INSTALLATION_SAFETY)",
+    mr: "स्थापना सुरक्षा (INSTALLATION_SAFETY)",
+    ta: "நிறுவல் பாதுகாப்பு (INSTALLATION_SAFETY)",
+    gu: "ઇન્સ્ટોલેશન સુરક્ષા (INSTALLATION_SAFETY)",
+    bn: "ইনস্টলেশন নিরাপত্তা (INSTALLATION_SAFETY)",
+    kn: "ಅನುಸ್ಥಾಪನಾ ಸುರಕ್ಷತೆ (INSTALLATION_SAFETY)",
+    ml: "ഇൻസ്റ്റാളേഷൻ സുരക്ഷ (INSTALLATION_SAFETY)"
+  },
+  "GENERAL_SAFETY": {
+    te: "సాధారణ భద్రత (GENERAL_SAFETY)",
+    hi: "सामान्य सुरक्षा (GENERAL_SAFETY)",
+    mr: "सामान्य सुरक्षा (GENERAL_SAFETY)",
+    ta: "பொதுவான பாதுகாப்பு (GENERAL_SAFETY)",
+    gu: "સામાન્ય સુરક્ષા (GENERAL_SAFETY)",
+    bn: "সাধারণ নিরাপত্তা (GENERAL_SAFETY)",
+    kn: "ಸಾಮಾನ್ಯ ಸುರಕ್ಷತೆ (GENERAL_SAFETY)",
+    ml: "പൊതു സുരക്ഷ (GENERAL_SAFETY)"
+  },
+  "QUALITY_REQUIREMENTS": {
+    te: "నాణ్యతా అవసరాలు (QUALITY_REQUIREMENTS)",
+    hi: "गुणवत्ता आवश्यकताएं (QUALITY_REQUIREMENTS)",
+    mr: "गुणवत्ता आवश्यकता (QUALITY_REQUIREMENTS)",
+    ta: "தரத் தேவைகள் (QUALITY_REQUIREMENTS)",
+    gu: "ગુણવત્તા આવશ્યકતાઓ (QUALITY_REQUIREMENTS)",
+    bn: "গুণমান প্রয়োজনীয়তা (QUALITY_REQUIREMENTS)",
+    kn: "ಗುಣಮಟ್ಟದ ಅವಶ್ಯಕತೆಗಳು (QUALITY_REQUIREMENTS)",
+    ml: "ഗുണനിലവാര ആവശ്യകതകൾ (QUALITY_REQUIREMENTS)"
+  },
+  "ETD 45 - Illumination Engineering and Luminaires": {
+    te: "ETD 45 - లైటింగ్ ఇంజనీరింగ్ & ల్యూమినైర్లు",
+    hi: "ETD 45 - प्रकाश व्यवस्था इंजीनियरिंग और ल्यूमिनेयर",
+    mr: "ETD 45 - प्रकाश व्यवस्था अभियांत्रिकी आणि ल्युमिनेअर",
+    ta: "ETD 45 - லைட்டிங் இன்ஜினியரிங் & லுமினியர்ஸ்",
+    gu: "ETD 45 - લાઇટિંગ એન્જિનિયરિંગ અને લ્યુમિનેર",
+    bn: "ETD 45 - আলোক প্রকৌশল ও লুমিনিয়ার্স",
+    kn: "ETD 45 - ಲೈಟಿಂಗ್ ಎಂಜಿನಿಯರಿಂಗ್ ಮತ್ತು ಲ್ಯುಮಿನೈರ್‌ಗಳು",
+    ml: "ETD 45 - ലൈറ്റിംഗ് എഞ്ചിനീയറിംഗും ലുമിനെയറുകളും"
+  },
+  "CED 02 - Cement and Concrete": {
+    te: "CED 02 - సిమెంట్ & కాంక్రీట్",
+    hi: "CED 02 - सीमेंट और कंक्रीट",
+    mr: "CED 02 - सिमेंट आणि काँक्रीट",
+    ta: "CED 02 - சிமெண்ட் & கான்கிரீட்",
+    gu: "CED 02 - સિમેન્ટ અને કોંક્રિટ",
+    bn: "CED 02 - সিমেন্ট ও কংক্রিট",
+    kn: "CED 02 - ಸಿಮೆಂಟ್ ಮತ್ತು ಕಾಂಕ್ರೀಟ್",
+    ml: "CED 02 - സിമന്റും കോൺക്രീറ്റും"
+  },
+  "CED 46 - National Building Code": {
+    te: "CED 46 - జాతీయ భవన నిర్మాణ కోడ్",
+    hi: "CED 46 - राष्ट्रीय भवन संहिता",
+    mr: "CED 46 - राष्ट्रीय इमारत संहिता",
+    ta: "CED 46 - தேசிய கட்டிடக் குறியீடு",
+    gu: "CED 46 - રાષ્ટ્રીય બિલ્ડિંગ કોડ",
+    bn: "CED 46 - জাতীয় ভবন কোড",
+    kn: "CED 46 - ರಾಷ್ಟ್ರೀಯ ಕಟ್ಟಡ ಸಂಹಿತೆ",
+    ml: "CED 46 - ദേശീയ കെട്ടിട കോഡ്"
+  },
+  "ETD 14 - Electrical Wiring Accessories": {
+    te: "ETD 14 - ఎలక్ట్రికల్ వైరింగ్ ఉపకరణాలు",
+    hi: "ETD 14 - विद्युत वायरिंग सहायक उपकरण",
+    mr: "ETD 14 - इलेक्ट्रिकल वायरिंग उपकरणे",
+    ta: "ETD 14 - மின் வயரிங் பாகங்கள்",
+    gu: "ETD 14 - ઇલેક્ટ્રિકલ વાયરિંગ એસેસરીઝ",
+    bn: "ETD 14 - বৈদ্যুতিক ওয়্যারিং আনুষাঙ্গিক",
+    kn: "ETD 14 - ಎಲೆಕ್ಟ್ರಿಕಲ್ ವೈರಿಂಗ್ ಬಿಡಿಭಾಗಗಳು",
+    ml: "ETD 14 - ഇലക്ട്രിക്കൽ വയറിംഗ് ആക്സസറികൾ"
+  },
+  "Luminaires - Particular Requirements - Luminaires for Road and Street Lighting": {
+    te: "ల్యూమినైర్లు - నిర్దిష్ట అవసరాలు - రోడ్ మరియు వీధి లైటింగ్ కోసం ల్యూమినైర్లు",
+    hi: "ल्यूमिनेयर - विशेष आवश्यकताएं - सड़क और मार्ग प्रकाश व्यवस्था के लिए ल्यूमिनेयर",
+    mr: "ल्युमिनेअर्स - विशेष आवश्यकता - रस्ते आणि पथदिव्यांसाठी ल्युमिनेअर्स",
+    ta: "லுமினியர்ஸ் - குறிப்பிட்ட தேவைகள் - சாலை மற்றும் தெரு விளக்குகளுக்கான லுமினியர்ஸ்",
+    gu: "લ્યુમિનેર - વિશિષ્ટ આવશ્યકતાઓ - રસ્તા અને શેરી લાઇટિંગ માટે લ્યુમિનેર",
+    bn: "লুমিনিয়ার্স - নির্দিষ্ট প্রয়োজনীয়তা - রাস্তা ও রাস্তার আলোর জন্য লুমিনিয়ার্স",
+    kn: "ಲ್ಯುಮಿನೈರ್‌ಗಳು - ನಿರ್ದಿಷ್ಟ ಅವಶ್ಯಕತೆಗಳು - ರಸ್ತೆ ಮತ್ತು ಬೀದಿ ದೀಪಗಳಿಗಾಗಿ ಲ್ಯುಮಿನೈರ್‌ಗಳು",
+    ml: "ലുമിനെയറുകൾ - നിർദ്ദിഷ്ട ആവശ്യകതകൾ - റോഡ്, തെരുവ് വിളക്കുകൾക്കായുള്ള ലുമിനെയറുകൾ"
+  },
+  "Specifies requirements for luminaires for road, street, highway, expressway lighting, and other public outdoor area lighting, with supply voltages not exceeding 1000 V. Covers mechanical strength, IP ingress protection (IP65/IP68), photometric performance, thermal endurance, and electrical safety.": {
+    te: "రోడ్డు, వీధి, హైవే, ఎక్స్‌ప్రెస్‌వే మరియు ఇతర బహిరంగ ప్రాంతాల లైటింగ్ కోసం అవసరాలను నిర్దేశిస్తుంది (1000 V వరకు). యాంత్రిక బలం, IP ప్రొటెక్షన్ (IP65/IP68), ఫోటోమెట్రిక్ పనితీరు, ఉష్ణ ఓర్పు మరియు విద్యుత్ భద్రతను వివరిస్తుంది.",
+    hi: "सड़क, राजमार्ग, एक्सप्रेसवे और अन्य सार्वजनिक आउटडोर प्रकाश व्यवस्था के लिए आवश्यकताओं को निर्दिष्ट करता है (1000 V तक)। इसमें यांत्रिक शक्ति, IP सुरक्षा (IP65/IP68), फोटोमेट्रिक प्रदर्शन, थर्मल सहनशीलता और विद्युत सुरक्षा शामिल है।",
+    mr: "रस्ते, महामार्ग आणि इतर सार्वजनिक बाहेरील प्रकाश व्यवस्थेसाठी आवश्यकता निर्दिष्ट करते (1000 V पर्यंत). यामध्ये यांत्रिक ताकद, IP संरक्षण (IP65/IP68), फोटोमेट्रिक कामगिरी आणि विद्युत सुरक्षा समाविष्ट आहे.",
+    ta: "சாலை, நெடுஞ்சாலை மற்றும் பிற பொது வெளிப்புற விளக்குகளுக்கான தேவைகளைக் குறிப்பிடுகிறது (1000 V வரை). இயந்திர வலிமை, IP பாதுகாப்பு (IP65/IP68), ஒளி அளவீட்டு செயல்திறன் மற்றும் மின் பாதுகாப்பை உள்ளடக்கியது.",
+    gu: "રસ્તા, હાઇવે અને અન્ય જાહેર આઉટડોર લાઇટિંગ માટેની આવશ્યકતાઓ સ્પષ્ટ કરે છે (1000 V સુધી). યાંત્રિક તાકાત, IP સુરક્ષા (IP65/IP68), ફોટોમેટ્રિક કામગીરી અને વિદ્યુત સુરક્ષા આવરી લે છે.",
+    bn: "রাস্তা, হাইওয়ে এবং অন্যান্য পাবলিক আউটডোর আলোর জন্য প্রয়োজনীয়তা নির্দিষ্ট করে (1000 V পর্যন্ত)। যান্ত্রিক শক্তি, IP সুরক্ষা (IP65/IP68), ফটোমেট্রিক কার্যকারিতা এবং বৈদ্যুতিক নিরাপত্তা কভার করে।",
+    kn: "ರಸ್ತೆ, ಹೆದ್ದಾರಿ ಮತ್ತು ಇತರ ಸಾರ್ವಜನಿಕ ಹೊರಾಂಗಣ ಬೆಳಕಿನ ಅಗತ್ಯತೆಗಳನ್ನು ನಿರ್ದಿಷ್ಟಪಡಿಸುತ್ತದೆ (1000 V ವರೆಗೆ). ಯಾಂತ್ರಿಕ ಶಕ್ತಿ, IP ರಕ್ಷಣೆ (IP65/IP68), ಫೋಟೊಮೆಟ್ರಿಕ್ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ವಿದ್ಯುತ್ ಸುರಕ್ಷತೆಯನ್ನು ಒಳಗೊಂಡಿದೆ.",
+    ml: "റോഡ്, ഹൈവേ, മറ്റ് പൊതു ഔട്ട്ഡോർ ലൈറ്റിംഗുകൾക്കായുള്ള ആവശ്യകതകൾ വ്യക്തമാക്കുന്നു (1000 V വരെ). മെക്കാനിക്കൽ ശക്തി, IP പരിരക്ഷ (IP65/IP68), ഫോട്ടോമെട്രിക് പ്രകടനം, വൈദ്യുത സുരക്ഷ എന്നിവ ഉൾക്കൊള്ളുന്നു."
+  },
+  "Safety of AC/DC Electronic Controlgear for LED Modules": {
+    te: "LED మాడ్యూల్స్ కోసం AC/DC ఎలక్ట్రానిక్ కంట్రోల్‌గేర్ భద్రత",
+    hi: "एलईडी मॉड्यूल के लिए एसी/डीसी इलेक्ट्रॉनिक कंट्रोलगियर की सुरक्षा",
+    mr: "एलईडी मॉड्यूल्ससाठी एसी/डीसी इलेक्ट्रॉनिक कंट्रोलगिअरची सुरक्षा",
+    ta: "LED தொகுதிகளுக்கான AC/DC மின்னணு கட்டுப்பாட்டுக் கருவியின் பாதுகாப்பு",
+    gu: "LED મોડ્યુલ્સ માટે AC/DC ઇલેક્ટ્રોનિક કંટ્રોલગિયરની સુરક્ષા",
+    bn: "LED মডিউলের জন্য AC/DC ইলেকট্রনিক কন্ট্রোলগিয়ারের নিরাপত্তা",
+    kn: "ಎಲ್‌ಇಡಿ ಮಾಡ್ಯೂಲ್‌ಗಳಿಗಾಗಿ AC/DC ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಕಂಟ್ರೋಲ್‌ಗಿಯರ್ ಸುರಕ್ಷತೆ",
+    ml: "എൽഇഡി മൊഡ്യൂളുകൾക്കായുള്ള എസി/ഡിസി ഇലക്ട്രോണിക് കൺട്രോൾഗിയറിന്റെ സുരക്ഷ"
+  },
+  "LED Luminaires for General Lighting - Performance Requirements": {
+    te: "సాధారణ లైటింగ్ కోసం LED ల్యూమినైర్లు - పనితీరు అవసరాలు",
+    hi: "सामान्य प्रकाश व्यवस्था के लिए एलईडी ल्यूमिनेयर - प्रदर्शन आवश्यकताएं",
+    mr: "सामान्य प्रकाशासाठी एलईडी ल्युमिनेअर्स - कार्यप्रदर्शन आवश्यकता",
+    ta: "பொது விளக்குகளுக்கான LED லுமினியர்ஸ் - செயல்திறன் தேவைகள்",
+    gu: "સામાન્ય લાઇટિંગ માટે LED લ્યુમિનેર - પ્રદર્શન આવશ્યકતાઓ",
+    bn: "সাধারণ আলোর জন্য LED লুমিনিয়ার্স - কর্মক্ষমতা প্রয়োজনীয়তা",
+    kn: "ಸಾಮಾನ್ಯ ಬೆಳಕಿಗಾಗಿ ಎಲ್ಇಡಿ ಲ್ಯುಮಿನೈರ್ಗಳು - ಕಾರ್ಯಕ್ಷಮತೆಯ ಅಗತ್ಯತೆಗಳು",
+    ml: "പൊതു ലൈറ്റിംഗിനായുള്ള എൽഇഡി ലുമിനെയറുകൾ - പ്രവർത്തന ആവശ്യകതകൾ"
+  },
+  "LED Modules for General Lighting - Safety Specifications": {
+    te: "సాధారణ లైటింగ్ కోసం LED మాడ్యూల్స్ - భద్రతా లక్షణాలు",
+    hi: "सामान्य प्रकाश व्यवस्था के लिए एलईडी मॉड्यूल - सुरक्षा विनिर्देश",
+    mr: "सामान्य प्रकाशासाठी एलईडी मॉड्यूल्स - सुरक्षा तपशील",
+    ta: "பொது விளக்குகளுக்கான LED தொகுதிகள் - பாதுகாப்பு விவரக்குறிப்புகள்",
+    gu: "સામાન્ય લાઇટિંગ માટે LED મોડ્યુલ્સ - સુરક્ષા વિશિષ્ટતાઓ",
+    bn: "সাধারণ আলোর জন্য LED মডিউল - নিরাপত্তা নির্দিষ্টকরণ",
+    kn: "ಸಾಮಾನ್ಯ ಬೆಳಕಿಗಾಗಿ ಎಲ್ಇಡಿ ಮಾಡ್ಯೂಲ್ಗಳು - ಸುರಕ್ಷತಾ ವಿಶೇಷಣಗಳು",
+    ml: "പൊതു ലൈറ്റിംഗിനായുള്ള എൽഇഡി മൊഡ്യൂളുകൾ - സുരക്ഷാ സവിശേഷതകൾ"
+  },
+  "Plain and Reinforced Concrete - Code of Practice": {
+    te: "సాధారణ మరియు రీన్‌ఫోర్స్డ్ కాంక్రీట్ - ప్రాక్టీస్ కోడ్",
+    hi: "सादा और प्रबलित कंक्रीट - अभ्यास संहिता",
+    mr: "साधे आणि प्रबलित काँक्रीट - सराव संहिता",
+    ta: "சாதாரண மற்றும் வலுவூட்டப்பட்ட கான்கிரீட் - நடைமுறைக் குறியீடு",
+    gu: "સાદો અને રિઇનફોર્સ્ડ કોંક્રિટ - પ્રેક્ટિસ કોડ",
+    bn: "সাধারণ ও চাঙ্গা কংক্রিট - অনুশীলন কোড",
+    kn: "ಪ್ಲೇನ್ ಮತ್ತು ರೀನ್‌ಫೋರ್ಸ್ಡ್ ಕಾಂಕ್ರೀಟ್ - ಅಭ್ಯಾಸ ಸಂಹಿತೆ",
+    ml: "പ്ലെയിൻ ആൻഡ് റീഇൻഫോഴ്സ്ഡ് കോൺക്രീറ്റ് - കോഡ് ഓഫ് പ്രാക്ടീസ്"
+  },
+  "Electrical Equipment (Quality Control) Order, 2020": {
+    te: "ఎలక్ట్రికల్ ఎక్విప్‌మెంట్ (నాణ్యత నియంత్రణ) ఆర్డర్, 2020",
+    hi: "विद्युत उपकरण (गुणवत्ता नियंत्रण) आदेश, 2020",
+    mr: "विद्युत उपकरणे (गुणवत्ता नियंत्रण) आदेश, 2020",
+    ta: "மின் உபகரணங்கள் (தரக் கட்டுப்பாடு) ஆணை, 2020",
+    gu: "વિદ્યુત ઉપકરણો (ગુણવત્તા નિયંત્રણ) ઓર્ડર, 2020",
+    bn: "বৈদ্যুতিক সরঞ্জাম (গুণমান নিয়ন্ত্রণ) আদেশ, ২০২০",
+    kn: "ವಿದ್ಯುತ್ ಉಪಕರಣಗಳು (ಗುಣಮಟ್ಟ ನಿಯಂತ್ರಣ) ಆದೇಶ, 2020",
+    ml: "ഇലക്ട്രിക്കൽ ഉപകരണങ്ങൾ (ഗുണനിലവാര നിയന്ത്രണം) ഓർഡർ, 2020"
+  },
+  "Contravention punishable under Section 29 of the Bureau of Indian Standards Act, 2016 with imprisonment up to 2 years or fine.": {
+    te: "భారతీయ ప్రమాణాల బ్యూరో చట్టం, 2016 లోని సెక్షన్ 29 ప్రకారం ఉల్లంఘనలకు 2 సంవత్సరాల వరకు జైలు శిక్ష లేదా జరిమానా విధించబడుతుంది.",
+    hi: "भारतीय मानक ब्यूरो अधिनियम, 2016 की धारा 29 के तहत उल्लंघन करने पर 2 वर्ष तक का कारावास या जुर्माना हो सकता है।",
+    mr: "भारतीय मानक ब्युरो कायदा, 2016 च्या कलम 29 अंतर्गत उल्लंघन केल्यास 2 वर्षांपर्यंत कारावास किंवा दंड होऊ शकतो.",
+    ta: "இந்திய தரநிலைகள் பணியக சட்டம், 2016 இன் பிரிவு 29 இன் கீழ் மீறல்களுக்கு 2 ஆண்டுகள் வரை சிறைத்தண்டனை அல்லது அபராதம் விதிக்கப்படும்.",
+    gu: "બ્યુરો ઓફ ઇન્ડિયન સ્ટાન્ડર્ડ્સ એક્ટ, 2016 ની કલમ 29 હેઠળ ઉલ્લંઘન માટે 2 વર્ષ સુધીની કેદ અથવા દંડ થઈ શકે છે.",
+    bn: "ব্যুরো অফ ইন্ডিয়ান স্ট্যান্ডার্ডস অ্যাক্ট, 2016 এর ধারা 29 এর অধীনে লঙ্ঘনের জন্য 2 বছর পর্যন্ত কারাদণ্ড বা জরিমানা হতে পারে।",
+    kn: "ಬ್ಯೂರೋ ಆಫ್ ಇಂಡಿಯನ್ ಸ್ಟ್ಯಾಂಡರ್ಡ್ಸ್ ಆಕ್ಟ್, 2016 ರ ಸೆಕ್ಷನ್ 29 ರ ಅಡಿಯಲ್ಲಿ ಉಲ್ಲಂಘನೆಗೆ 2 ವರ್ಷಗಳವರೆಗೆ ಜೈಲು ಶಿಕ್ಷೆ ಅಥವಾ ದಂಡ ವಿಧಿಸಲಾಗುತ್ತದೆ.",
+    ml: "ബ്യൂറോ ഓഫ് ഇന്ത്യൻ സ്റ്റാൻഡേർഡ്സ് ആക്റ്റ്, 2016 ലെ സെക്ഷൻ 29 പ്രകാരം ലംഘനങ്ങൾക്ക് 2 വർഷം വരെ തടവോ പിഴയോ ലഭിക്കാം."
   }
 };
 
@@ -1487,4 +1854,89 @@ export function translateDomainTerm(lang: string, term: string): string {
     return DOMAIN_TERMS[term][lang];
   }
   return term;
+}
+
+
+/**
+ * Rationale translator helper for recommendations
+ */
+export function translateRationale(lang: string, text: string): string {
+  if (!text || lang === "en") return text;
+
+  if (lang === "te") {
+    let res = text;
+    res = res.replace(/Direct alignment with technical terms:\s*/gi, "సాంకేతిక నిబంధనలతో ప్రత్యక్ష సమలేఖనం: ");
+    res = res.replace(/Semantic engineering intent matches scope of\s*/gi, "ఇంజనీరింగ్ ఉద్దేశ్యం మరియు పరిధి సరిపోలిక: ");
+    res = res.replace(/Statutory mandate applies \(Scheme-I \(ISI Mark\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "చట్టబద్ధమైన ఆదేశం వర్తిస్తుంది (స్కీమ్-I (ISI మార్క్)). భారత ప్రభుత్వ నోటిఫికేషన్ల ప్రకారం ప్రభుత్వ సేకరణకు తప్పనిసరి.");
+    res = res.replace(/Statutory mandate applies \(Scheme-II \(CRS\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "చట్టబద్ధమైన ఆదేశం వర్తిస్తుంది (స్కీమ్-II (CRS)). భారత ప్రభుత్వ నోటిఫికేషన్ల ప్రకారం ప్రభుత్వ సేకరణకు తప్పనిసరి.");
+    res = res.replace(/Valid active standard reaffirmed in\s*(\d+)\s*with\s*(\d+)\s*amendments incorporated\./gi, "చెల్లుబాటు అయ్యే క్రియాశీల ప్రమాణం $2 సవరణలతో $1లో పునరుద్ధరించబడింది.");
+    return res;
+  }
+
+  if (lang === "hi") {
+    let res = text;
+    res = res.replace(/Direct alignment with technical terms:\s*/gi, "तकनीकी शब्दों के साथ सीधा संरेखण: ");
+    res = res.replace(/Semantic engineering intent matches scope of\s*/gi, "इंजीनियरिंग उद्देश्य और कार्यक्षेत्र मिलान: ");
+    res = res.replace(/Statutory mandate applies \(Scheme-I \(ISI Mark\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "वैधानिक अधिदेश लागू होता है (स्कीम-I (ISI मार्क))। भारत सरकार की अधिसूचनाओं के तहत सार्वजनिक खरीद के लिए अनिवार्य।");
+    res = res.replace(/Statutory mandate applies \(Scheme-II \(CRS\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "वैधानिक अधिदेश लागू होता है (स्कीम-II (CRS))। भारत सरकार की अधिसूचनाओं के तहत सार्वजनिक खरीद के लिए अनिवार्य।");
+    res = res.replace(/Valid active standard reaffirmed in\s*(\d+)\s*with\s*(\d+)\s*amendments incorporated\./gi, "$2 संशोधनों के साथ $1 में पुनः पुष्ट किया गया वैध सक्रिय मानक।");
+    return res;
+  }
+
+  if (lang === "mr") {
+    let res = text;
+    res = res.replace(/Direct alignment with technical terms:\s*/gi, "तांत्रिक अटींशी थेट संरेखन: ");
+    res = res.replace(/Semantic engineering intent matches scope of\s*/gi, "अभियांत्रिकी हेतू आणि व्याप्ती जुळणी: ");
+    res = res.replace(/Statutory mandate applies \(Scheme-I \(ISI Mark\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "वैधानिक आदेश लागू होतो (योजना-I (ISI मार्क)). भारत सरकारच्या अधिसूचनेनुसार सार्वजनिक खरेदीसाठी अनिवार्य.");
+    res = res.replace(/Statutory mandate applies \(Scheme-II \(CRS\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "वैधानिक आदेश लागू होतो (योजना-II (CRS)). भारत सरकारच्या अधिसूचनेनुसार सार्वजनिक खरेदीसाठी अनिवार्य.");
+    res = res.replace(/Valid active standard reaffirmed in\s*(\d+)\s*with\s*(\d+)\s*amendments incorporated\./gi, "$2 दुरुस्त्यांसह $1 मध्ये पुष्टी केलेले वैध सक्रिय मानक.");
+    return res;
+  }
+
+  if (lang === "ta") {
+    let res = text;
+    res = res.replace(/Direct alignment with technical terms:\s*/gi, "தொழில்நுட்ப விதிமுறைகளுடன் நேரடி சீரமைப்பு: ");
+    res = res.replace(/Semantic engineering intent matches scope of\s*/gi, "பொறியியல் நோக்கம் மற்றும் பயன்பாட்டு பொருத்தம்: ");
+    res = res.replace(/Statutory mandate applies \(Scheme-I \(ISI Mark\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "சட்டப்பூர்வ ஆணை பொருந்தும் (திட்டம்-I (ISI குறி)). இந்திய அரசு அறிவிப்புகளின் கீழ் பொதுக் கொள்முதலுக்கு கட்டாயமானது.");
+    res = res.replace(/Valid active standard reaffirmed in\s*(\d+)\s*with\s*(\d+)\s*amendments incorporated\./gi, "$2 திருத்தங்களுடன் $1 இல் உறுதிப்படுத்தப்பட்ட செல்லுபடியாகும் செயலில் உள்ள தரநிலை.");
+    return res;
+  }
+
+  if (lang === "gu") {
+    let res = text;
+    res = res.replace(/Direct alignment with technical terms:\s*/gi, "તકનીકી શરતો સાથે સીધું સંરેખણ: ");
+    res = res.replace(/Semantic engineering intent matches scope of\s*/gi, "એન્જિનિયરિંગ હેતુ અને કાર્યક્ષેત્ર મેળ: ");
+    res = res.replace(/Statutory mandate applies \(Scheme-I \(ISI Mark\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "વૈધાનિક આદેશ લાગુ પડે છે (યોજના-I (ISI માર્ક)). ભારત સરકારના જાહેરનામા હેઠળ જાહેર પ્રાપ્તિ માટે ફરજિયાત.");
+    res = res.replace(/Valid active standard reaffirmed in\s*(\d+)\s*with\s*(\d+)\s*amendments incorporated\./gi, "$2 સુધારાઓ સાથે $1 માં પુનઃપુષ્ટિ થયેલ માન્ય સક્રિય ધોરણ.");
+    return res;
+  }
+
+  if (lang === "bn") {
+    let res = text;
+    res = res.replace(/Direct alignment with technical terms:\s*/gi, "প্রযুক্তিগত শর্তাবলীর সাথে সরাসরি সারিবদ্ধতা: ");
+    res = res.replace(/Semantic engineering intent matches scope of\s*/gi, "প্রকৌশল উদ্দেশ্য এবং পরিধি মিল: ");
+    res = res.replace(/Statutory mandate applies \(Scheme-I \(ISI Mark\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "সংবিধিবদ্ধ বাধ্যবাধকতা প্রযোজ্য (স্কিম-I (ISI চিহ্ন))। ভারত সরকারের বিজ্ঞপ্তির অধীনে সরকারি সংগ্রহের জন্য বাধ্যতামূলক।");
+    res = res.replace(/Valid active standard reaffirmed in\s*(\d+)\s*with\s*(\d+)\s*amendments incorporated\./gi, "$2টি সংশোধনী সহ $1 সালে পুনঃনিশ্চিত বৈধ সক্রিয় মান।");
+    return res;
+  }
+
+  if (lang === "kn") {
+    let res = text;
+    res = res.replace(/Direct alignment with technical terms:\s*/gi, "ತಾಂತ್ರಿಕ ನಿಯಮಗಳೊಂದಿಗೆ ನೇರ ಜೋಡಣೆ: ");
+    res = res.replace(/Semantic engineering intent matches scope of\s*/gi, "ಇಂಜಿನಿಯರಿಂಗ್ ಉದ್ದೇಶ ಮತ್ತು ವ್ಯಾಪ್ತಿ ಹೊಂದಾಣಿಕೆ: ");
+    res = res.replace(/Statutory mandate applies \(Scheme-I \(ISI Mark\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "ಶಾಸನಬದ್ಧ ಆದೇಶ ಅನ್ವಯಿಸುತ್ತದೆ (ಯೋಜನೆ-I (ISI ಮಾರ್ಕ್)). ಭಾರತ ಸರ್ಕಾರದ ಅಧಿಸೂಚನೆಗಳ ಅಡಿಯಲ್ಲಿ ಸಾರ್ವಜನಿಕ ಸಂಗ್ರಹಣೆಗೆ ಕಡ್ಡಾಯವಾಗಿದೆ.");
+    res = res.replace(/Valid active standard reaffirmed in\s*(\d+)\s*with\s*(\d+)\s*amendments incorporated\./gi, "$2 ತಿದ್ದುಪಡಿಗಳೊಂದಿಗೆ $1 ರಲ್ಲಿ ಪುನರುಚ್ಚರಿಸಲಾದ ಮಾನ್ಯ ಸಕ್ರಿಯ ಮಾನದಂಡ.");
+    return res;
+  }
+
+  if (lang === "ml") {
+    let res = text;
+    res = res.replace(/Direct alignment with technical terms:\s*/gi, "സാങ്കേതിക നിബന്ധനകളുമായി നേരിട്ടുള്ള യോജിപ്പ്: ");
+    res = res.replace(/Semantic engineering intent matches scope of\s*/gi, "എഞ്ചിനീയറിംഗ് ഉദ്ദേശ്യവും പരിധി പൊരുത്തപ്പെടലും: ");
+    res = res.replace(/Statutory mandate applies \(Scheme-I \(ISI Mark\)\)\.\s*Mandatory for public procurement under Government of India notifications\./gi, "നിയമപരമായ ഉത്തരവ് ബാധകമാണ് (സ്കീം-I (ISI മാർക്ക്)). ഇന്ത്യാ ഗവൺമെന്റ് വിജ്ഞാപനങ്ങൾ പ്രകാരം പൊതു സംഭരണത്തിന് നിർബന്ധമാണ്.");
+    res = res.replace(/Valid active standard reaffirmed in\s*(\d+)\s*with\s*(\d+)\s*amendments incorporated\./gi, "$2 ഭേദഗതികളോടെ $1-ൽ വീണ്ടും സ്ഥിരീകരിച്ച സാധുവായ സജീവ മാനദണ്ഡം.");
+    return res;
+  }
+
+  return text;
 }

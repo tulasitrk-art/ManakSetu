@@ -19,6 +19,46 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+function triggerGoogleTranslate(targetLang: string) {
+  if (typeof window === "undefined") return;
+
+  const cookieVal = targetLang === "en" ? "/en/en" : `/en/${targetLang}`;
+  const host = window.location.hostname;
+
+  // Set cookies across path and host variations
+  try {
+    document.cookie = `googtrans=${cookieVal}; path=/;`;
+    document.cookie = `googtrans=${cookieVal}; path=/; domain=${host};`;
+    if (host.includes(".")) {
+      document.cookie = `googtrans=${cookieVal}; path=/; domain=.${host};`;
+    }
+  } catch (e) {
+    // Ignore cookie write errors
+  }
+
+  const activateCombo = () => {
+    const combo = document.querySelector(".goog-te-combo") as HTMLSelectElement | null;
+    if (combo) {
+      if (combo.value !== targetLang) {
+        combo.value = targetLang;
+        combo.dispatchEvent(new Event("change"));
+      }
+      return true;
+    }
+    return false;
+  };
+
+  if (!activateCombo()) {
+    let attempts = 0;
+    const interval = setInterval(() => {
+      attempts++;
+      if (activateCombo() || attempts > 20) {
+        clearInterval(interval);
+      }
+    }, 250);
+  }
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<string>("en");
   const [mounted, setMounted] = useState<boolean>(false);
@@ -30,6 +70,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       if (savedLang && SUPPORTED_LANGUAGES.some((l) => l.code === savedLang)) {
         setLanguageState(savedLang);
         document.documentElement.lang = savedLang;
+        if (savedLang !== "en") {
+          triggerGoogleTranslate(savedLang);
+        }
       }
     } catch (e) {
       // Ignore localStorage errors
@@ -46,6 +89,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     } catch (e) {
       // Ignore localStorage errors
     }
+    triggerGoogleTranslate(newLang);
   };
 
   const t = (key: string, fallback?: string): string => {

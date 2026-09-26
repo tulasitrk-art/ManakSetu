@@ -199,25 +199,25 @@ export default function StandardsCatalogPage() {
 
                     <div>
                       <h3 className="text-base font-bold font-serif text-slate-900 leading-snug">
-                        {std.title}
+                        {translateTerm(std.title)}
                       </h3>
                       <p className="text-xs text-slate-500 mt-0.5">{translateTerm(std.department_division)}</p>
                     </div>
 
                     <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                      {std.scope_description}
+                      {translateTerm(std.scope_description)}
                     </p>
 
                     {/* Metadata Chips */}
                     <div className="grid grid-cols-3 gap-2 text-center text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-200/60">
                       <div>
-                        <span className="text-slate-400 block text-[10px] uppercase">Status</span>
+                        <span className="text-slate-400 block text-[10px] uppercase">{t("status", "Status")}</span>
                         <span className={`font-bold text-[11px] ${std.status === 'ACTIVE' ? 'text-emerald-700' : 'text-rose-700'}`}>
                           {translateTerm(std.status)}
                         </span>
                       </div>
                       <div>
-                        <span className="text-slate-400 block text-[10px] uppercase">Published</span>
+                        <span className="text-slate-400 block text-[10px] uppercase">{t("published", "Published")}</span>
                         <span className="font-semibold text-slate-800 text-[11px]">{std.year_published || "N/A"}</span>
                       </div>
                       <div>

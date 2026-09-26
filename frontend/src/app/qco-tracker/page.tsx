@@ -145,13 +145,13 @@ export default function QCOTrackerPage() {
                   </div>
 
                   <h3 className="text-base font-bold font-serif text-slate-900 leading-snug">
-                    {qco.order_title}
+                    {translateTerm(qco.order_title)}
                   </h3>
 
                   <div className="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-3 rounded-lg border border-slate-200/70">
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase">{t("issuing_ministry", "Issuing Ministry")}</span>
-                      <span className="font-semibold text-slate-800 line-clamp-1">{qco.issuing_ministry}</span>
+                      <span className="font-semibold text-slate-800 line-clamp-1">{translateTerm(qco.issuing_ministry)}</span>
                     </div>
                     <div>
                       <span className="text-slate-400 block text-[10px] uppercase">{t("gazette_notification", "Gazette Notification")}</span>
@@ -179,7 +179,7 @@ export default function QCOTrackerPage() {
                           className="p-2 rounded bg-maroon-50/50 border border-maroon-100 text-xs flex items-center justify-between gap-2"
                         >
                           <span className="font-bold font-mono text-maroon-900">{s.is_code}</span>
-                          <span className="text-slate-600 text-right line-clamp-1">{s.product_name}</span>
+                          <span className="text-slate-600 text-right line-clamp-1">{translateTerm(s.product_name)}</span>
                         </div>
                       ))}
                     </div>
@@ -189,7 +189,7 @@ export default function QCOTrackerPage() {
                 {/* Penal Action Warning */}
                 <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-900">
                   <strong className="font-semibold text-rose-950">{t("penal_clause", "Statutory Penalty")}: </strong>
-                  <span>{qco.penalty_clause}</span>
+                  <span>{translateTerm(qco.penalty_clause)}</span>
                 </div>
               </div>
             ))}

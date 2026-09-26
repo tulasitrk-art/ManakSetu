@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
-import { ShieldCheck, AlertTriangle, CheckCircle, ShieldAlert, Clock } from "lucide-react";
+import { ShieldCheck, AlertTriangle, CheckCircle, ShieldAlert } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ComplianceBadgeProps {
   status: string;
@@ -12,6 +15,7 @@ export default function ComplianceBadge({
   scheme,
   size = "md",
 }: ComplianceBadgeProps) {
+  const { t } = useLanguage();
   const isSmall = size === "sm";
 
   if (status === "MANDATORY_QCO") {
@@ -22,7 +26,7 @@ export default function ComplianceBadge({
         }`}
       >
         <ShieldCheck className={isSmall ? "w-3 h-3 text-maroon-700" : "w-4 h-4 text-maroon-700"} />
-        <span>Mandatory QCO (ISI Scheme-I)</span>
+        <span>{t("badge_mandatory_qco", "Mandatory QCO (ISI Scheme-I)")}</span>
       </span>
     );
   }
@@ -35,7 +39,7 @@ export default function ComplianceBadge({
         }`}
       >
         <ShieldAlert className={isSmall ? "w-3 h-3 text-amber-700" : "w-4 h-4 text-amber-700"} />
-        <span>Compulsory CRS (Scheme-II)</span>
+        <span>{t("badge_compulsory_crs", "Compulsory CRS (Scheme-II)")}</span>
       </span>
     );
   }
@@ -48,7 +52,7 @@ export default function ComplianceBadge({
         }`}
       >
         <AlertTriangle className={isSmall ? "w-3 h-3 text-rose-700" : "w-4 h-4 text-rose-700"} />
-        <span>Superseded / Withdrawn</span>
+        <span>{t("badge_superseded", "Superseded / Withdrawn")}</span>
       </span>
     );
   }
@@ -61,7 +65,7 @@ export default function ComplianceBadge({
         }`}
       >
         <ShieldCheck className={isSmall ? "w-3 h-3 text-purple-700" : "w-4 h-4 text-purple-700"} />
-        <span>Mandatory Hallmarking</span>
+        <span>{t("badge_hallmarking", "Mandatory Hallmarking")}</span>
       </span>
     );
   }
@@ -73,7 +77,7 @@ export default function ComplianceBadge({
       }`}
     >
       <CheckCircle className={isSmall ? "w-3 h-3 text-slate-500" : "w-3.5 h-3.5 text-slate-500"} />
-      <span>Voluntary Standard</span>
+      <span>{t("badge_voluntary", "Voluntary Standard")}</span>
     </span>
   );
 }

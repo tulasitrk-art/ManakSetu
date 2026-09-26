@@ -114,7 +114,7 @@ export default function TenderReportModal({
             </div>
             <div>
               <span className="text-slate-500 block text-[10px] uppercase">{t("standards_identified", "Standards Evaluated")}</span>
-              <span className="font-semibold text-slate-900">{reportData.primary_recommendations.length} Standards</span>
+              <span className="font-semibold text-slate-900">{reportData.primary_recommendations.length} {t("standards", "Standards")}</span>
             </div>
           </div>
 
@@ -137,9 +137,9 @@ export default function TenderReportModal({
               </div>
               {reportData.lifecycle_warnings.map((w, i) => (
                 <div key={i} className="text-xs text-rose-800">
-                  <p><strong>Detected Code:</strong> {w.is_code_detected}</p>
-                  <p><strong>Warning:</strong> {w.warning_message}</p>
-                  <p><strong>Remediation:</strong> {w.action_required}</p>
+                  <p><strong>{t("detected_code", "Detected Code")}:</strong> {w.is_code_detected}</p>
+                  <p><strong>{t("warnings", "Warning")}:</strong> {translateTerm(w.warning_message)}</p>
+                  <p><strong>{t("remediation", "Remediation")}:</strong> {translateTerm(w.action_required)}</p>
                 </div>
               ))}
             </div>
@@ -153,11 +153,11 @@ export default function TenderReportModal({
             <table className="w-full text-xs border border-slate-200 divide-y divide-slate-200">
               <thead className="bg-slate-50 text-slate-700">
                 <tr>
-                  <th className="p-2.5 text-left font-semibold">Standard Code</th>
-                  <th className="p-2.5 text-left font-semibold">Title & Scope</th>
-                  <th className="p-2.5 text-left font-semibold">Status</th>
-                  <th className="p-2.5 text-left font-semibold">Scheme</th>
-                  <th className="p-2.5 text-right font-semibold">Confidence</th>
+                  <th className="p-2.5 text-left font-semibold">{t("standard_code", "Standard Code")}</th>
+                  <th className="p-2.5 text-left font-semibold">{t("title_and_scope", "Title & Scope")}</th>
+                  <th className="p-2.5 text-left font-semibold">{t("status", "Status")}</th>
+                  <th className="p-2.5 text-left font-semibold">{t("scheme", "Scheme")}</th>
+                  <th className="p-2.5 text-right font-semibold">{t("confidence", "Confidence")}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -167,8 +167,8 @@ export default function TenderReportModal({
                       {rec.standard.is_code}
                     </td>
                     <td className="p-2.5 text-slate-700 max-w-xs">
-                      <div className="font-semibold text-slate-900">{rec.standard.title}</div>
-                      <div className="text-[11px] text-slate-500 line-clamp-2 mt-0.5">{rec.standard.scope_description}</div>
+                      <div className="font-semibold text-slate-900">{translateTerm(rec.standard.title)}</div>
+                      <div className="text-[11px] text-slate-500 line-clamp-2 mt-0.5">{translateTerm(rec.standard.scope_description)}</div>
                     </td>
                     <td className="p-2.5 whitespace-nowrap">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${rec.standard.status === 'ACTIVE' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}`}>
@@ -198,7 +198,7 @@ export default function TenderReportModal({
                   <div key={idx} className="p-2 bg-slate-50 rounded border border-slate-200/80 flex items-center justify-between">
                     <div>
                       <span className="font-semibold font-mono text-slate-900">{norm.is_code}</span>
-                      <span className="text-slate-600 ml-2">{norm.title}</span>
+                      <span className="text-slate-600 ml-2">{translateTerm(norm.title)}</span>
                     </div>
                   </div>
                 ))}
