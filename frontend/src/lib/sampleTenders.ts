@@ -61,6 +61,66 @@ export const SAMPLE_QUERIES: SampleQuery[] = [
     isQCO: true
   },
   {
+    id: "sample-te",
+    category: "Indic (Telugu)",
+    title: "వీధి లైట్లు మరియు సౌర ఫలకాలు (Telugu)",
+    query: "జాతీయ రహదారి కోసం ఎనర్జీ ఎఫిషియెంట్ ఎల్ఈడీ వీధి దీపం మరియు సోలార్ ప్యానెల్ మాడ్యూల్",
+    language: "te",
+    langName: "తెలుగు (Telugu)",
+    expectedIS: "IS 10322 (Part 5/Sec 3)",
+    isQCO: true
+  },
+  {
+    id: "sample-mr",
+    category: "Indic (Marathi)",
+    title: "रस्त्यावरील दिवे आणि काँक्रीट (Marathi)",
+    query: "रस्त्यावरील दिवे आणि पायाभूत सुविधांसाठी उच्च दर्जाचे सिमेंट काँक्रीट आणि लोखंडी सळई",
+    language: "mr",
+    langName: "मराठी (Marathi)",
+    expectedIS: "IS 10322 / IS 456",
+    isQCO: true
+  },
+  {
+    id: "sample-gu",
+    category: "Indic (Gujarati)",
+    title: "શેરીની લાઇટ અને પીવાનું પાણી (Gujarati)",
+    query: "શેરીની લાઇટ અને પીવાના પાણીના પ્રોજેક્ટ માટે એચડીપીઇ પાઇપ",
+    language: "gu",
+    langName: "ગુજરાતી (Gujarati)",
+    expectedIS: "IS 10322 / IS 4984",
+    isQCO: true
+  },
+  {
+    id: "sample-bn",
+    category: "Indic (Bengali)",
+    title: "রাস্তার আলো এবং কংক্রিট (Bengali)",
+    query: "মহাসড়কের জন্য শক্তি সাশ্রয়ী এলইডি রাস্তার আলো এবং রিইনফোর্সড কংক্রিট",
+    language: "bn",
+    langName: "বাংলা (Bengali)",
+    expectedIS: "IS 10322 / IS 456",
+    isQCO: true
+  },
+  {
+    id: "sample-kn",
+    category: "Indic (Kannada)",
+    title: "ಬೀದಿ ದೀಪಗಳು ಮತ್ತು ನೀರಿನ ಪೈಪುಗಳು (Kannada)",
+    query: "ಹೆದ್ದಾರಿ ಬೀದಿ ದೀಪಗಳು ಮತ್ತು ಕುಡಿಯುವ ನೀರಿನ ಯೋಜನೆಗಾಗಿ ಎಚ್‌ಡಿಪಿಇ ಪೈಪ್",
+    language: "kn",
+    langName: "ಕನ್ನಡ (Kannada)",
+    expectedIS: "IS 10322 / IS 4984",
+    isQCO: true
+  },
+  {
+    id: "sample-ml",
+    category: "Indic (Malayalam)",
+    title: "തെരുവ് വിളക്കും നിർമ്മാണവും (Malayalam)",
+    query: "ദേശീയപാത തെരുവ് വിളക്കുകൾക്കും നിർമ്മാണത്തിനുമുള്ള ടിഎംടി സ്റ്റീൽ ബാറുകൾ",
+    language: "ml",
+    langName: "മലയാളം (Malayalam)",
+    expectedIS: "IS 10322 / IS 1786",
+    isQCO: true
+  },
+  {
     id: "sample-6",
     category: "Outdated Version Test",
     title: "Superseded Standard Warning",

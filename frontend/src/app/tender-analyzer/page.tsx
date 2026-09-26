@@ -12,17 +12,14 @@ import {
   AlertTriangle,
   Layers,
   FlaskConical,
-  ShieldCheck,
   Download,
-  Building2,
-  Sparkles,
-  Gauge
 } from "lucide-react";
-import { uploadTenderDocument, fetchRecommendations } from "@/lib/api";
+import { uploadTenderDocument } from "@/lib/api";
 import { TenderParseResult, RecommendationResponse } from "@/lib/types";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function TenderAnalyzerPage() {
-  const [selectedLang, setSelectedLang] = useState<string>("en");
+  const { language, t, translateTerm } = useLanguage();
   const [parseResult, setParseResult] = useState<TenderParseResult | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -43,7 +40,6 @@ export default function TenderAnalyzerPage() {
   };
 
   const handleDirectText = async (text: string, title: string) => {
-    // Create a virtual file to upload
     const file = new File([text], `${title.replace(/[^a-zA-Z0-9]/g, "_")}.txt`, { type: "text/plain" });
     await handleFileUpload(file);
   };
@@ -72,22 +68,29 @@ export default function TenderAnalyzerPage() {
     };
   };
 
+  const getStatusLabel = (status: string) => {
+    if (status === "EXCELLENT") return t("excellent", "EXCELLENT");
+    if (status === "MODERATE_RISK") return t("moderate_risk", "MODERATE RISK");
+    if (status === "HIGH_DISPUTE_RISK") return t("high_dispute_risk", "HIGH DISPUTE RISK");
+    return status;
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      <Navbar selectedLang={selectedLang} onLangChange={setSelectedLang} />
+      <Navbar />
 
       {/* Header */}
       <section className="bg-gradient-to-r from-slate-900 via-maroon-950 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 border-b-4 border-maroon-700">
         <div className="max-w-6xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-maroon-800 text-amber-300 text-xs font-semibold">
             <FileSearch className="w-4 h-4" />
-            <span>Automated Tender Document OCR & Specification Audit</span>
+            <span>{t("analyzer_badge", "Automated Tender Document OCR & Specification Audit")}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold font-serif">
-            Tender Specification & Standards Gap Analyzer
+            {t("analyzer_title", "Tender Specification & Standards Gap Analyzer")}
           </h1>
           <p className="text-sm text-slate-300 max-w-3xl">
-            Upload draft NIT tender documents, GeM technical schedules, or engineering drawings to automatically detect referenced IS standards, flag missing normative safety standards, and compute a dispute risk score.
+            {t("analyzer_subtitle", "Upload draft NIT tender documents, GeM technical schedules, or engineering drawings to automatically detect referenced IS standards, flag missing normative safety standards, and compute a dispute risk score.")}
           </p>
         </div>
       </section>
@@ -121,27 +124,27 @@ export default function TenderAnalyzerPage() {
                   {parseResult.gap_analysis.tender_readiness_score}%
                 </div>
                 <div>
-                  <span className="text-[10px] text-slate-400 uppercase font-semibold">Readiness Score</span>
-                  <h4 className="text-sm font-bold text-slate-900">{parseResult.gap_analysis.readiness_status}</h4>
+                  <span className="text-[10px] text-slate-400 uppercase font-semibold">{t("readiness_score", "Readiness Score")}</span>
+                  <h4 className="text-sm font-bold text-slate-900">{getStatusLabel(parseResult.gap_analysis.readiness_status)}</h4>
                 </div>
               </div>
 
               <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                <span className="text-[10px] text-slate-400 uppercase font-semibold">Tender Reference</span>
+                <span className="text-[10px] text-slate-400 uppercase font-semibold">{t("tender_reference", "Tender Reference")}</span>
                 <h4 className="text-sm font-bold text-slate-900 font-mono line-clamp-1">{parseResult.parsed_metadata.tender_reference}</h4>
-                <span className="text-xs text-slate-500">{parseResult.parsed_metadata.word_count} words parsed</span>
+                <span className="text-xs text-slate-500">{parseResult.parsed_metadata.word_count} {t("words_parsed", "words parsed")}</span>
               </div>
 
               <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-                <span className="text-[10px] text-slate-400 uppercase font-semibold">Citations Detected</span>
+                <span className="text-[10px] text-slate-400 uppercase font-semibold">{t("citations_detected", "Citations Detected")}</span>
                 <h4 className="text-sm font-bold text-slate-900">{parseResult.parsed_metadata.detected_is_codes.length} Standards</h4>
-                <span className="text-xs text-slate-500">{parseResult.lifecycle_warnings.length} Warnings</span>
+                <span className="text-xs text-slate-500">{parseResult.lifecycle_warnings.length} {t("warnings", "Warnings")}</span>
               </div>
 
               <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] text-slate-400 uppercase font-semibold">Audit Certificate</span>
-                  <h4 className="text-xs font-bold text-slate-900">Ready to Export</h4>
+                  <span className="text-[10px] text-slate-400 uppercase font-semibold">{t("audit_certificate", "Audit Certificate")}</span>
+                  <h4 className="text-xs font-bold text-slate-900">{t("ready_to_export", "Ready to Export")}</h4>
                 </div>
                 <button
                   type="button"
@@ -149,7 +152,7 @@ export default function TenderAnalyzerPage() {
                   className="px-3 py-2 bg-maroon-700 hover:bg-maroon-800 text-white rounded-lg text-xs font-bold flex items-center space-x-1 shadow-sm"
                 >
                   <Download className="w-3.5 h-3.5" />
-                  <span>Report</span>
+                  <span>{t("view_report_btn", "Report")}</span>
                 </button>
               </div>
             </div>
@@ -160,10 +163,10 @@ export default function TenderAnalyzerPage() {
               <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
                 <div className="flex items-center space-x-2 text-slate-900 font-serif font-bold text-sm">
                   <Layers className="w-4 h-4 text-maroon-700" />
-                  <span>Missing Normative References in Draft</span>
+                  <span>{t("missing_normatives_title", "Missing Normative References in Draft")}</span>
                 </div>
                 <p className="text-xs text-slate-500">
-                  These standards should be cross-referenced to ensure component safety and quality:
+                  {t("missing_normatives_desc", "These standards should be cross-referenced to ensure component safety and quality:")}
                 </p>
                 <ul className="space-y-2 text-xs">
                   {parseResult.gap_analysis.missing_normative_standards.map((s, i) => (
@@ -179,16 +182,16 @@ export default function TenderAnalyzerPage() {
               <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-3">
                 <div className="flex items-center space-x-2 text-slate-900 font-serif font-bold text-sm">
                   <FlaskConical className="w-4 h-4 text-maroon-700" />
-                  <span>Mandatory Acceptance Test Protocols</span>
+                  <span>{t("mandatory_tests_title", "Mandatory Acceptance Test Protocols")}</span>
                 </div>
                 <p className="text-xs text-slate-500">
-                  Essential laboratory test standards to incorporate into tender inspection clauses:
+                  {t("mandatory_tests_desc", "Essential laboratory test standards to incorporate into tender inspection clauses:")}
                 </p>
                 <ul className="space-y-2 text-xs">
-                  {parseResult.gap_analysis.recommended_mandatory_tests.map((t, i) => (
+                  {parseResult.gap_analysis.recommended_mandatory_tests.map((tItem, i) => (
                     <li key={i} className="p-2.5 bg-emerald-50 rounded border border-emerald-200 text-emerald-950 flex items-center space-x-2">
                       <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>{t}</span>
+                      <span>{tItem}</span>
                     </li>
                   ))}
                 </ul>
@@ -199,7 +202,7 @@ export default function TenderAnalyzerPage() {
             {parseResult.parsed_metadata.extracted_parameters.length > 0 && (
               <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-2">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                  Extracted Technical Parameters from Tender Schedules
+                  {t("extracted_params_title", "Extracted Technical Parameters from Tender Schedules")}
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {parseResult.parsed_metadata.extracted_parameters.map((param, i) => (
@@ -214,7 +217,7 @@ export default function TenderAnalyzerPage() {
             {/* Recommended Standards */}
             <div className="space-y-4">
               <h3 className="text-lg font-bold font-serif text-slate-900">
-                Recommended Applicable Indian Standards (BIS)
+                {t("recommended_standards", "Recommended Applicable Indian Standards (BIS)")}
               </h3>
               <div className="grid grid-cols-1 gap-6">
                 {parseResult.recommended_standards.map((rec, idx) => (

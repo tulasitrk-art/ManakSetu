@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { Upload, FileText, CheckCircle, AlertCircle, Loader2, Sparkles, Building2 } from "lucide-react";
+import { Upload, FileText, CheckCircle, Loader2, Sparkles, Building2 } from "lucide-react";
 import { PRELOADED_TENDERS } from "@/lib/sampleTenders";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface FileUploadProps {
   onFileParsed: (file: File, department?: string) => Promise<void>;
@@ -15,6 +16,7 @@ export default function FileUpload({
   onDirectTextSubmit,
   isLoading,
 }: FileUploadProps) {
+  const { t } = useLanguage();
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [department, setDepartment] = useState("National Highways Authority of India (NHAI)");
@@ -91,10 +93,10 @@ export default function FileUpload({
 
           <div>
             <h4 className="text-base font-bold text-slate-800 font-serif">
-              {selectedFile ? selectedFile.name : "Upload Draft Tender Document or Technical Specifications"}
+              {selectedFile ? selectedFile.name : t("upload_box_title", "Upload Draft Tender Document or Technical Specifications")}
             </h4>
             <p className="text-xs text-slate-500 mt-1">
-              Supports PDF, DOCX, TXT files (Govt RFP, GeM Bid Document, NIT Technical Schedules)
+              {t("upload_box_subtitle", "Supports PDF, DOCX, TXT files (Govt RFP, GeM Bid Document, NIT Technical Schedules)")}
             </p>
           </div>
 
@@ -116,12 +118,12 @@ export default function FileUpload({
                 {isLoading ? (
                   <>
                     <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                    <span>Analyzing Tender...</span>
+                    <span>{t("processing_file", "Parsing & Auditing Document...")}</span>
                   </>
                 ) : (
                   <>
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>Parse & Recommend Standards</span>
+                    <span>{t("analyze_btn", "Audit & Analyze Tender Document")}</span>
                   </>
                 )}
               </button>
@@ -135,9 +137,8 @@ export default function FileUpload({
         <div className="flex items-center justify-between mb-3">
           <h5 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
             <Building2 className="w-4 h-4 text-maroon-700" />
-            <span>Or Load Sample Government Procurement Tenders</span>
+            <span>{t("or_choose_preloaded", "Or select a pre-loaded sample government tender:")}</span>
           </h5>
-          <span className="text-[11px] text-slate-400">One-click test dataset</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">

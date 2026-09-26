@@ -4,12 +4,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ComplianceBadge from "@/components/ComplianceBadge";
-import { BookOpen, Search, Filter, ShieldCheck, Layers, FlaskConical, ExternalLink, Loader2 } from "lucide-react";
+import { BookOpen, Search, Layers, ExternalLink, Loader2 } from "lucide-react";
 import { fetchAllStandards } from "@/lib/api";
 import { Standard } from "@/lib/types";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function StandardsCatalogPage() {
-  const [selectedLang, setSelectedLang] = useState<string>("en");
+  const { t, translateTerm } = useLanguage();
   const [standards, setStandards] = useState<Standard[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -35,22 +36,15 @@ export default function StandardsCatalogPage() {
   };
 
   const divisions = [
-    { code: "ALL", name: "All 15 Division Councils" },
-    { code: "Civil", name: "Civil Engineering (CED)" },
-    { code: "Electrotechnical", name: "Electrotechnical (ETD)" },
-    { code: "Mechanical", name: "Mechanical Engineering (MED)" },
-    { code: "Electronics", name: "Electronics & IT (LITD)" },
-    { code: "Chemical", name: "Chemical (CHD)" },
-    { code: "Metallurgical", name: "Metallurgical (MTD)" },
-    { code: "Textile", name: "Textile (TXD)" },
-    { code: "Food", name: "Food & Agriculture (FAD)" },
-    { code: "Medical", name: "Medical Equipment (MHD)" },
-    { code: "Petroleum", name: "Petroleum & Coal (PCD)" },
-    { code: "Production", name: "Production & General (PRD)" },
-    { code: "Transport", name: "Transport Engineering (TED)" },
-    { code: "Water", name: "Water Resources (WSD)" },
-    { code: "Management", name: "Management & Systems (MSDD)" },
-    { code: "Services", name: "Services Sector (SSD)" }
+    { code: "ALL", name: t("all_divisions", "All 15 Division Councils") },
+    { code: "Civil", name: translateTerm("Civil Engineering Division (CED)") },
+    { code: "Electrotechnical", name: translateTerm("Electrotechnical Division (ETD)") },
+    { code: "Mechanical", name: translateTerm("Mechanical Engineering Division (MED)") },
+    { code: "Electronics", name: translateTerm("Electronics & IT (LITD)") },
+    { code: "Chemical", name: translateTerm("Chemical (CHD)") },
+    { code: "Metallurgical", name: translateTerm("Metallurgical (MTD)") },
+    { code: "Textile", name: translateTerm("Textile (TXD)") },
+    { code: "Food", name: translateTerm("Food & Agriculture (FAD)") },
   ];
 
   // Reset page when filters change
@@ -80,20 +74,20 @@ export default function StandardsCatalogPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      <Navbar selectedLang={selectedLang} onLangChange={setSelectedLang} />
+      <Navbar />
 
       {/* Header */}
       <section className="bg-gradient-to-r from-slate-900 via-maroon-950 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 border-b-4 border-maroon-700">
         <div className="max-w-7xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-maroon-800 text-amber-300 text-xs font-semibold">
             <BookOpen className="w-4 h-4" />
-            <span>Bureau of Indian Standards Repository</span>
+            <span>{t("standards_badge", "Bureau of Indian Standards Repository")}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold font-serif">
-            Indian Standards (IS) Catalog & Lifecycle Directory
+            {t("standards_title", "Indian Standards (IS) Catalog & Lifecycle Directory")}
           </h1>
           <p className="text-sm text-slate-300 max-w-3xl">
-            Browse active and superseded Indian Standards across all engineering domains, normative references, test methods, amendments, and quality control mandates.
+            {t("standards_subtitle", "Browse active and superseded Indian Standards across all engineering domains, normative references, test methods, amendments, and quality control mandates.")}
           </p>
         </div>
       </section>
@@ -108,7 +102,7 @@ export default function StandardsCatalogPage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by IS code (e.g. IS 10322), keyword, technical parameter..."
+              placeholder={t("search_standards_placeholder", "Search standard number (e.g. IS 10322), keyword, or title...")}
               className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-maroon-700"
             />
           </div>
@@ -116,7 +110,7 @@ export default function StandardsCatalogPage() {
           <div className="flex flex-wrap items-center gap-3">
             {/* Division Select */}
             <div className="flex items-center space-x-2">
-              <span className="text-xs font-medium text-slate-500">Division:</span>
+              <span className="text-xs font-medium text-slate-500">{t("division_filter", "Division Council:")}</span>
               <select
                 value={selectedDivision}
                 onChange={(e) => setSelectedDivision(e.target.value)}
@@ -138,7 +132,7 @@ export default function StandardsCatalogPage() {
                 onChange={(e) => setQcoOnly(e.target.checked)}
                 className="rounded text-maroon-700 focus:ring-maroon-700"
               />
-              <span>Mandatory QCO Only</span>
+              <span>{t("mandatory_qco_only", "Mandatory QCO Only")}</span>
             </label>
           </div>
         </div>
@@ -146,10 +140,9 @@ export default function StandardsCatalogPage() {
         {/* Results Header with Counts */}
         <div className="flex items-center justify-between text-xs text-slate-600 px-1">
           <p>
-            Showing <span className="font-bold text-slate-900">{(currentPage - 1) * itemsPerPage + 1}</span> to{" "}
-            <span className="font-bold text-slate-900">{Math.min(currentPage * itemsPerPage, filtered.length)}</span> of{" "}
-            <span className="font-bold text-maroon-800">{filtered.length.toLocaleString()}</span> filtered standards{" "}
-            <span className="text-slate-400">({standards.length.toLocaleString()} total in repository)</span>
+            {t("showing_standards", "Showing")} <span className="font-bold text-slate-900">{(currentPage - 1) * itemsPerPage + 1}</span> to{" "}
+            <span className="font-bold text-slate-900">{Math.min(currentPage * itemsPerPage, filtered.length)}</span> {t("of_standards", "of")}{" "}
+            <span className="font-bold text-maroon-800">{filtered.length.toLocaleString()}</span>
           </p>
           {totalPages > 1 && (
             <div className="flex items-center space-x-2">
@@ -158,17 +151,17 @@ export default function StandardsCatalogPage() {
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 className="px-2.5 py-1 rounded bg-white border border-slate-300 text-slate-700 font-medium disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50"
               >
-                Previous
+                {t("previous", "Previous")}
               </button>
               <span className="font-semibold text-slate-800">
-                Page {currentPage} of {totalPages}
+                {currentPage} / {totalPages}
               </span>
               <button
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 className="px-2.5 py-1 rounded bg-white border border-slate-300 text-slate-700 font-medium disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50"
               >
-                Next
+                {t("next", "Next")}
               </button>
             </div>
           )}
@@ -178,7 +171,7 @@ export default function StandardsCatalogPage() {
         {isLoading ? (
           <div className="h-64 flex flex-col items-center justify-center space-y-3">
             <Loader2 className="w-8 h-8 animate-spin text-maroon-700" />
-            <p className="text-xs text-slate-500 font-medium">Loading standards directory...</p>
+            <p className="text-xs text-slate-500 font-medium">{t("searching", "Loading standards directory...")}</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="p-12 text-center bg-white rounded-xl border border-slate-200">
@@ -208,7 +201,7 @@ export default function StandardsCatalogPage() {
                       <h3 className="text-base font-bold font-serif text-slate-900 leading-snug">
                         {std.title}
                       </h3>
-                      <p className="text-xs text-slate-500 mt-0.5">{std.department_division}</p>
+                      <p className="text-xs text-slate-500 mt-0.5">{translateTerm(std.department_division)}</p>
                     </div>
 
                     <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
@@ -220,7 +213,7 @@ export default function StandardsCatalogPage() {
                       <div>
                         <span className="text-slate-400 block text-[10px] uppercase">Status</span>
                         <span className={`font-bold text-[11px] ${std.status === 'ACTIVE' ? 'text-emerald-700' : 'text-rose-700'}`}>
-                          {std.status}
+                          {translateTerm(std.status)}
                         </span>
                       </div>
                       <div>
@@ -228,8 +221,8 @@ export default function StandardsCatalogPage() {
                         <span className="font-semibold text-slate-800 text-[11px]">{std.year_published || "N/A"}</span>
                       </div>
                       <div>
-                        <span className="text-slate-400 block text-[10px] uppercase">Amendments</span>
-                        <span className="font-semibold text-slate-800 text-[11px]">{std.amendments_count} Active</span>
+                        <span className="text-slate-400 block text-[10px] uppercase">{t("amendments_count", "Amendments")}</span>
+                        <span className="font-semibold text-slate-800 text-[11px]">{std.amendments_count}</span>
                       </div>
                     </div>
 
@@ -237,7 +230,7 @@ export default function StandardsCatalogPage() {
                     {std.normative_references && std.normative_references.length > 0 && (
                       <div className="text-xs text-slate-500 flex items-center space-x-1.5">
                         <Layers className="w-3.5 h-3.5 text-maroon-700" />
-                        <span>{std.normative_references.length} Normative Reference Standards</span>
+                        <span>{std.normative_references.length} {t("normative_allied_tab", "Normative Standards")}</span>
                       </div>
                     )}
                   </div>
@@ -249,7 +242,7 @@ export default function StandardsCatalogPage() {
                       href={`/graph-view?focus=${encodeURIComponent(std.is_code)}`}
                       className="text-maroon-700 hover:text-maroon-900 font-semibold flex items-center gap-1 hover:underline"
                     >
-                      Explore in Graph <ExternalLink className="w-3 h-3" />
+                      {t("view_in_graph", "Explore in Graph")} <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
                 </div>
@@ -261,34 +254,20 @@ export default function StandardsCatalogPage() {
               <div className="flex items-center justify-center space-x-3 pt-4 border-t border-slate-200">
                 <button
                   disabled={currentPage === 1}
-                  onClick={() => setCurrentPage(1)}
-                  className="px-3 py-1.5 rounded bg-white border border-slate-300 text-xs font-semibold text-slate-700 disabled:opacity-40 hover:bg-slate-50"
-                >
-                  First
-                </button>
-                <button
-                  disabled={currentPage === 1}
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   className="px-3 py-1.5 rounded bg-white border border-slate-300 text-xs font-semibold text-slate-700 disabled:opacity-40 hover:bg-slate-50"
                 >
-                  Previous
+                  {t("previous", "Previous")}
                 </button>
                 <span className="text-xs font-bold text-slate-800 px-2">
-                  Page {currentPage} of {totalPages}
+                  {currentPage} / {totalPages}
                 </span>
                 <button
                   disabled={currentPage === totalPages}
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   className="px-3 py-1.5 rounded bg-white border border-slate-300 text-xs font-semibold text-slate-700 disabled:opacity-40 hover:bg-slate-50"
                 >
-                  Next
-                </button>
-                <button
-                  disabled={currentPage === totalPages}
-                  onClick={() => setCurrentPage(totalPages)}
-                  className="px-3 py-1.5 rounded bg-white border border-slate-300 text-xs font-semibold text-slate-700 disabled:opacity-40 hover:bg-slate-50"
-                >
-                  Last
+                  {t("next", "Next")}
                 </button>
               </div>
             )}

@@ -3,12 +3,13 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Scale, ShieldCheck, Search, Filter, Calendar, FileText, AlertTriangle, Building2, Loader2 } from "lucide-react";
+import { Scale, Search, Loader2 } from "lucide-react";
 import { fetchQCOList } from "@/lib/api";
 import { QCOItem } from "@/lib/types";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function QCOTrackerPage() {
-  const [selectedLang, setSelectedLang] = useState<string>("en");
+  const { t, translateTerm } = useLanguage();
   const [qcoList, setQcoList] = useState<QCOItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -48,20 +49,20 @@ export default function QCOTrackerPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      <Navbar selectedLang={selectedLang} onLangChange={setSelectedLang} />
+      <Navbar />
 
       {/* Header */}
       <section className="bg-gradient-to-r from-slate-900 via-maroon-950 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 border-b-4 border-amber-500">
         <div className="max-w-7xl mx-auto space-y-3">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-maroon-800 text-amber-300 text-xs font-semibold">
             <Scale className="w-4 h-4" />
-            <span>Statutory Compliance Registry • BIS Act 2016</span>
+            <span>{t("qco_badge", "Statutory Compliance Registry • BIS Act 2016")}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold font-serif">
-            Quality Control Orders (QCO) Gazette Registry
+            {t("qco_title", "Quality Control Orders (QCO) Gazette Registry")}
           </h1>
           <p className="text-sm text-slate-300 max-w-3xl">
-            Live catalog of Compulsory Certification Orders issued by Central Ministries. Procurement of non-certified products covered under these orders is a statutory violation under Section 16 & 29 of the Bureau of Indian Standards Act, 2016.
+            {t("qco_subtitle", "Live catalog of Compulsory Certification Orders issued by Central Ministries. Procurement of non-certified products covered under these orders is a statutory violation under Section 16 & 29 of the Bureau of Indian Standards Act, 2016.")}
           </p>
         </div>
       </section>
@@ -76,7 +77,7 @@ export default function QCOTrackerPage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search QCO order title, gazette number (e.g. S.O. 1678(E)), product name, or IS code..."
+              placeholder={t("search_qco_placeholder", "Search QCO order title, gazette number (e.g. S.O. 1678(E)), product name, or IS code...")}
               className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-maroon-700"
             />
           </div>
@@ -84,7 +85,7 @@ export default function QCOTrackerPage() {
           <div className="flex flex-wrap items-center gap-3">
             {/* Ministry Filter */}
             <div className="flex items-center space-x-2">
-              <span className="text-xs font-medium text-slate-500">Ministry:</span>
+              <span className="text-xs font-medium text-slate-500">{t("ministry_filter", "Ministry:")}</span>
               <select
                 value={selectedMinistry}
                 onChange={(e) => setSelectedMinistry(e.target.value)}
@@ -92,7 +93,7 @@ export default function QCOTrackerPage() {
               >
                 {ministries.map((m) => (
                   <option key={m} value={m}>
-                    {m}
+                    {m === "ALL" ? t("all_ministries", "All Ministries") : m}
                   </option>
                 ))}
               </select>
@@ -100,13 +101,13 @@ export default function QCOTrackerPage() {
 
             {/* Scheme Filter */}
             <div className="flex items-center space-x-2">
-              <span className="text-xs font-medium text-slate-500">Scheme:</span>
+              <span className="text-xs font-medium text-slate-500">{t("scheme_filter", "Scheme:")}</span>
               <select
                 value={selectedScheme}
                 onChange={(e) => setSelectedScheme(e.target.value)}
                 className="bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-maroon-700"
               >
-                <option value="ALL">All Schemes</option>
+                <option value="ALL">{t("all_schemes", "All Certification Schemes")}</option>
                 <option value="Scheme-I">Scheme-I (ISI Mark)</option>
                 <option value="Scheme-II">Scheme-II (CRS Registration)</option>
               </select>
@@ -118,7 +119,7 @@ export default function QCOTrackerPage() {
         {isLoading ? (
           <div className="h-64 flex flex-col items-center justify-center space-y-3">
             <Loader2 className="w-8 h-8 animate-spin text-maroon-700" />
-            <p className="text-xs text-slate-500 font-medium">Loading statutory gazette registry...</p>
+            <p className="text-xs text-slate-500 font-medium">{t("searching", "Loading statutory gazette registry...")}</p>
           </div>
         ) : filtered.length === 0 ? (
           <div className="p-12 text-center bg-white rounded-xl border border-slate-200">
@@ -139,7 +140,7 @@ export default function QCOTrackerPage() {
                       {qco.qco_id}
                     </span>
                     <span className="px-2.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold">
-                      {qco.certification_scheme}
+                      {translateTerm(qco.certification_scheme)}
                     </span>
                   </div>
 
@@ -149,11 +150,11 @@ export default function QCOTrackerPage() {
 
                   <div className="grid grid-cols-2 gap-2 text-xs bg-slate-50 p-3 rounded-lg border border-slate-200/70">
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase">Issuing Ministry</span>
+                      <span className="text-slate-400 block text-[10px] uppercase">{t("issuing_ministry", "Issuing Ministry")}</span>
                       <span className="font-semibold text-slate-800 line-clamp-1">{qco.issuing_ministry}</span>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase">Gazette Notification</span>
+                      <span className="text-slate-400 block text-[10px] uppercase">{t("gazette_notification", "Gazette Notification")}</span>
                       <span className="font-semibold font-mono text-slate-800">{qco.gazette_number}</span>
                     </div>
                     <div>
@@ -161,7 +162,7 @@ export default function QCOTrackerPage() {
                       <span className="text-slate-700">{qco.notification_date}</span>
                     </div>
                     <div>
-                      <span className="text-slate-400 block text-[10px] uppercase">Enforcement Date</span>
+                      <span className="text-slate-400 block text-[10px] uppercase">{t("enforcement_date", "Enforcement Date")}</span>
                       <span className="font-semibold text-emerald-700">{qco.effective_date}</span>
                     </div>
                   </div>
@@ -169,7 +170,7 @@ export default function QCOTrackerPage() {
                   {/* Applicable Standards */}
                   <div>
                     <h5 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
-                      Mandated Indian Standards ({qco.applicable_standards.length})
+                      {t("governed_standards", "Governed Indian Standards")} ({qco.applicable_standards.length})
                     </h5>
                     <div className="space-y-1.5">
                       {qco.applicable_standards.map((s, idx) => (
@@ -178,20 +179,18 @@ export default function QCOTrackerPage() {
                           className="p-2 rounded bg-maroon-50/50 border border-maroon-100 text-xs flex items-center justify-between gap-2"
                         >
                           <span className="font-bold font-mono text-maroon-900">{s.is_code}</span>
-                          <span className="text-slate-600 line-clamp-1 text-[11px]">{s.product_name}</span>
+                          <span className="text-slate-600 text-right line-clamp-1">{s.product_name}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
 
-                {/* Penalty Clause */}
-                {qco.penalty_clause && (
-                  <div className="pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex items-start space-x-1.5">
-                    <AlertTriangle className="w-3.5 h-3.5 text-amber-600 flex-shrink-0 mt-0.5" />
-                    <span><strong>Statutory Sanction:</strong> {qco.penalty_clause}</span>
-                  </div>
-                )}
+                {/* Penal Action Warning */}
+                <div className="p-3 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-900">
+                  <strong className="font-semibold text-rose-950">{t("penal_clause", "Statutory Penalty")}: </strong>
+                  <span>{qco.penalty_clause}</span>
+                </div>
               </div>
             ))}
           </div>

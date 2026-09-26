@@ -29,6 +29,7 @@ node_modules/
 out/
 .npm
 *.log
+*.tsbuildinfo
 
 # IDE & OS
 .DS_Store

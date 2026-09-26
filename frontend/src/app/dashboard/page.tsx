@@ -13,23 +13,17 @@ import {
   ShieldCheck,
   FileText,
   AlertTriangle,
-  Layers,
   Network,
   Download,
   Loader2,
-  RefreshCw,
-  Building2,
-  CheckCircle2,
-  ArrowRight,
-  HelpCircle
 } from "lucide-react";
 import { SAMPLE_QUERIES, SampleQuery } from "@/lib/sampleTenders";
 import { fetchRecommendations, uploadTenderDocument } from "@/lib/api";
-import { RecommendationResponse, PrimaryRecommendation } from "@/lib/types";
-import { UI_TRANSLATIONS } from "@/lib/translations";
+import { RecommendationResponse } from "@/lib/types";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function DashboardPage() {
-  const [selectedLang, setSelectedLang] = useState<string>("en");
+  const { language, setLanguage, t } = useLanguage();
   const [activeTab, setActiveTab] = useState<"query" | "upload">("query");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -38,14 +32,12 @@ export default function DashboardPage() {
   const [isReportOpen, setIsReportOpen] = useState<boolean>(false);
   const [tenderTitle, setTenderTitle] = useState<string>("");
 
-  const t = UI_TRANSLATIONS[selectedLang] || UI_TRANSLATIONS.en;
-
   // Run initial default sample on first load
   useEffect(() => {
     handleRunQuery(SAMPLE_QUERIES[0].query, SAMPLE_QUERIES[0].language);
   }, []);
 
-  const handleRunQuery = async (queryText: string, langCode: string = selectedLang) => {
+  const handleRunQuery = async (queryText: string, langCode: string = language) => {
     if (!queryText.trim()) return;
     setIsLoading(true);
     setErrorMsg(null);
@@ -63,9 +55,11 @@ export default function DashboardPage() {
   };
 
   const handleSelectSample = (sample: SampleQuery) => {
-    setSelectedLang(sample.language);
+    if (sample.language && sample.language !== language) {
+      setLanguage(sample.language);
+    }
     setSearchQuery(sample.query);
-    handleRunQuery(sample.query, sample.language);
+    handleRunQuery(sample.query, sample.language || language);
   };
 
   const handleFileUpload = async (file: File, department?: string) => {
@@ -80,7 +74,7 @@ export default function DashboardPage() {
         query_processed: `Tender File: ${file.name} (Ref: ${parseResult.parsed_metadata.tender_reference})`,
         detected_language: "English (en)",
         translated_query: null,
-        primary_recommendations: parseResult.recommended_standards.map((r, i) => ({
+        primary_recommendations: parseResult.recommended_standards.map((r) => ({
           standard: r.standard,
           confidence_score: r.confidence_score,
           relevance_rationale: `Extracted from ${file.name} specification clauses.`,
@@ -110,32 +104,33 @@ export default function DashboardPage() {
   const handleDirectTextSubmit = (text: string, title: string) => {
     setTenderTitle(title);
     setSearchQuery(text);
-    handleRunQuery(text, "en");
+    handleRunQuery(text, language);
     setActiveTab("query");
   };
 
   const handleUpgradeStandard = (targetCode: string) => {
-    setSearchQuery(`Specifications for ${targetCode} with latest amendments`);
-    handleRunQuery(`Specifications for ${targetCode} with latest amendments`, "en");
+    const upgradeQuery = `Specifications for ${targetCode} with latest amendments`;
+    setSearchQuery(upgradeQuery);
+    handleRunQuery(upgradeQuery, language);
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
-      <Navbar selectedLang={selectedLang} onLangChange={(lang) => setSelectedLang(lang)} />
+      <Navbar />
 
       {/* Hero Header Section */}
       <section className="bg-gradient-to-b from-maroon-900 via-maroon-800 to-maroon-950 text-white pt-12 pb-16 px-4 sm:px-6 lg:px-8 border-b-4 border-amber-500 shadow-md">
         <div className="max-w-6xl mx-auto text-center space-y-4">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-maroon-700/80 border border-maroon-500/40 text-amber-300 text-xs font-semibold tracking-wide shadow-inner">
             <ShieldCheck className="w-4 h-4 text-amber-400" />
-            <span>Government e-Marketplace (GeM) & e-Procurement Compliance Engine</span>
+            <span>{t("hero_badge", "Government e-Marketplace (GeM) & e-Procurement Compliance Engine")}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif tracking-tight text-white leading-tight">
-            AI-Powered Indian Standards Recommendation Engine
+            {t("portal_title", "AI-Powered Indian Standards Recommendation Engine")}
           </h1>
           <p className="max-w-3xl mx-auto text-sm sm:text-base text-maroon-100 font-normal leading-relaxed">
-            Eliminate tender ambiguity, prevent procurement disputes, and ensure statutory Quality Control Order (QCO) compliance by instantly mapping technical specifications to the Bureau of Indian Standards (BIS) catalog.
+            {t("portal_subtitle", "Eliminate tender ambiguity, prevent procurement disputes, and ensure statutory Quality Control Order (QCO) compliance by instantly mapping technical specifications to the Bureau of Indian Standards (BIS) catalog.")}
           </p>
 
           {/* Search & Mode Container */}
@@ -153,7 +148,7 @@ export default function DashboardPage() {
                   }`}
                 >
                   <Sparkles className="w-4 h-4" />
-                  <span>{t.query_tab}</span>
+                  <span>{t("query_tab", "Technical Specification Query")}</span>
                 </button>
                 <button
                   type="button"
@@ -165,7 +160,7 @@ export default function DashboardPage() {
                   }`}
                 >
                   <FileText className="w-4 h-4" />
-                  <span>{t.upload_tab}</span>
+                  <span>{t("upload_tab", "Tender File / PDF Parser")}</span>
                 </button>
               </div>
 
@@ -184,8 +179,8 @@ export default function DashboardPage() {
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder={t.search_placeholder}
-                      className="w-full pl-12 pr-32 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-maroon-700 focus:border-maroon-700 transition-all placeholder:text-slate-400"
+                      placeholder={t("search_placeholder", "Enter product description, technical parameters, or paste draft tender specifications...")}
+                      className="w-full pl-12 pr-36 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-maroon-700 focus:border-maroon-700 transition-all placeholder:text-slate-400"
                     />
                     <button
                       type="submit"
@@ -195,12 +190,12 @@ export default function DashboardPage() {
                       {isLoading ? (
                         <>
                           <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                          <span>Searching...</span>
+                          <span>{t("searching", "Searching...")}</span>
                         </>
                       ) : (
                         <>
                           <Sparkles className="w-3.5 h-3.5" />
-                          <span>Identify Standards</span>
+                          <span>{t("identify_standards", "Identify Standards")}</span>
                         </>
                       )}
                     </button>
@@ -221,9 +216,9 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between text-xs text-maroon-200 mb-2">
                 <span className="font-semibold flex items-center gap-1">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  {t.sample_queries}:
+                  {t("sample_queries", "Quick Demonstration Queries")}:
                 </span>
-                <span className="text-[11px] text-maroon-300">Click any chip to test instantly</span>
+                <span className="text-[11px] text-maroon-300">{t("sample_hint", "Click any chip to test instantly")}</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {SAMPLE_QUERIES.map((sample) => (
@@ -250,7 +245,7 @@ export default function DashboardPage() {
           <div className="p-4 bg-rose-50 border border-rose-300 rounded-xl text-rose-800 text-sm flex items-start space-x-3">
             <AlertTriangle className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" />
             <div>
-              <strong className="font-semibold">Query Processing Notice:</strong>
+              <strong className="font-semibold">Notice:</strong>
               <p className="mt-0.5">{errorMsg}</p>
             </div>
           </div>
@@ -262,23 +257,23 @@ export default function DashboardPage() {
             <div className="space-y-1">
               <div className="flex items-center space-x-2">
                 <h2 className="text-xl font-bold font-serif text-slate-900">
-                  Recommended Indian Standards
+                  {t("recommended_standards", "Recommended Indian Standards")}
                 </h2>
                 <span className="text-xs font-mono font-bold bg-maroon-100 text-maroon-800 px-2.5 py-0.5 rounded-full">
-                  {recommendationsData.primary_recommendations.length} Standards Identified
+                  {recommendationsData.primary_recommendations.length} {t("standards_identified", "Standards Identified")}
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
                 <span>
-                  <strong>Language:</strong> {recommendationsData.detected_language}
+                  <strong>{t("language_label", "Language")}:</strong> {recommendationsData.detected_language}
                 </span>
                 {recommendationsData.translated_query && (
                   <span>
-                    • <strong>Normalized Technical English:</strong> &ldquo;{recommendationsData.translated_query}&rdquo;
+                    • <strong>{t("normalized_english", "Normalized Technical English")}:</strong> &ldquo;{recommendationsData.translated_query}&rdquo;
                   </span>
                 )}
                 <span>
-                  • <strong>Engine Latency:</strong> {recommendationsData.processing_time_ms} ms
+                  • <strong>{t("engine_latency", "Engine Latency")}:</strong> {recommendationsData.processing_time_ms} ms
                 </span>
               </div>
             </div>
@@ -290,7 +285,7 @@ export default function DashboardPage() {
                 className="flex items-center space-x-1.5 px-4 py-2 bg-maroon-700 hover:bg-maroon-800 text-white rounded-lg text-xs font-bold transition-all shadow-sm"
               >
                 <Download className="w-4 h-4" />
-                <span>{t.download_report}</span>
+                <span>{t("export_report", "Export Compliance Report")}</span>
               </button>
             </div>
           </div>
@@ -303,10 +298,10 @@ export default function DashboardPage() {
             <div className="p-5 bg-rose-50 border-2 border-rose-500 rounded-xl space-y-3">
               <div className="flex items-center space-x-2 text-rose-900 font-bold font-serif text-base">
                 <AlertTriangle className="w-6 h-6 text-rose-600" />
-                <span>Statutory Life-Cycle Warning: Superseded Standards Detected in Specification</span>
+                <span>{t("lifecycle_warning_title", "Statutory Life-Cycle Warning: Superseded Standards Detected in Specification")}</span>
               </div>
               <p className="text-xs text-rose-700">
-                The technical specification references outdated or withdrawn Indian Standards. Using them can result in audit rejection, legal disputes under the BIS Act 2016, or product non-compliance.
+                {t("lifecycle_warning_desc", "The technical specification references outdated or withdrawn Indian Standards. Using them can result in audit rejection, legal disputes under the BIS Act 2016, or product non-compliance.")}
               </p>
               <div className="space-y-2">
                 {recommendationsData.lifecycle_warnings.map((warn, i) => (
@@ -319,7 +314,7 @@ export default function DashboardPage() {
                       <span className="text-slate-600 ml-2">({warn.warning_message})</span>
                       {warn.superseded_by && (
                         <div className="text-emerald-800 font-semibold mt-1">
-                          Recommended Active Substitute: {warn.superseded_by}
+                          {t("active_substitute", "Recommended Active Substitute")}: {warn.superseded_by}
                         </div>
                       )}
                     </div>
@@ -329,7 +324,7 @@ export default function DashboardPage() {
                         onClick={() => handleUpgradeStandard(warn.superseded_by!)}
                         className="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-xs font-bold whitespace-nowrap self-start sm:self-auto shadow-sm"
                       >
-                        Auto-Upgrade to {warn.superseded_by}
+                        {t("auto_upgrade", "Auto-Upgrade to")} {warn.superseded_by}
                       </button>
                     )}
                   </div>
@@ -345,10 +340,10 @@ export default function DashboardPage() {
               <ShieldCheck className="w-6 h-6 text-amber-700 flex-shrink-0" />
               <div>
                 <h4 className="text-xs font-bold uppercase tracking-wide text-amber-950">
-                  Compulsory Quality Control Order (QCO) Mandate Applicable
+                  {t("qco_mandate_title", "Compulsory Quality Control Order (QCO) Mandate Applicable")}
                 </h4>
                 <p className="text-xs text-amber-800 mt-0.5">
-                  The recommended products require mandatory BIS Standard Mark (ISI / CRS) under Central Government Gazette Orders before public funds can be disbursed.
+                  {t("qco_mandate_desc", "The recommended products require mandatory BIS Standard Mark (ISI / CRS) under Central Government Gazette Orders before public funds can be disbursed.")}
                 </p>
               </div>
             </div>
@@ -389,11 +384,11 @@ export default function DashboardPage() {
                 <div className="flex items-center space-x-2">
                   <Network className="w-5 h-5 text-maroon-700" />
                   <h3 className="text-lg font-bold font-serif text-slate-900">
-                    Normative Knowledge Graph Visualization
+                    {t("normative_graph_title", "Normative Knowledge Graph Visualization")}
                   </h3>
                 </div>
                 <span className="text-xs text-slate-500">
-                  Interactive node map of connected test standards, allied codes & QCO orders
+                  {t("normative_graph_desc", "Interactive node map of connected test standards, allied codes & QCO orders")}
                 </span>
               </div>
 

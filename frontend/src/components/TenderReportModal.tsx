@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import { X, Printer, Download, ShieldCheck, CheckCircle2, AlertTriangle, FileText } from "lucide-react";
+import { X, Printer, Download, ShieldCheck, AlertTriangle } from "lucide-react";
 import { RecommendationResponse } from "@/lib/types";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TenderReportModalProps {
   isOpen: boolean;
@@ -17,6 +18,7 @@ export default function TenderReportModal({
   reportData,
   tenderTitle,
 }: TenderReportModalProps) {
+  const { t, translateTerm } = useLanguage();
   if (!isOpen || !reportData) return null;
 
   const handlePrint = () => {
@@ -44,10 +46,10 @@ export default function TenderReportModal({
             </div>
             <div>
               <h3 className="text-base font-bold font-serif">
-                Official Indian Standards Tender Compliance Report
+                {t("report_title", "BUREAU OF INDIAN STANDARDS (BIS) COMPLIANCE AUDIT CERTIFICATE")}
               </h3>
               <p className="text-xs text-slate-400">
-                Department of Consumer Affairs (DoCA) • Verification Audit Certificate
+                {t("doca_bis", "Department of Consumer Affairs (DoCA) & Bureau of Indian Standards (BIS)")}
               </p>
             </div>
           </div>
@@ -59,7 +61,7 @@ export default function TenderReportModal({
               className="flex items-center space-x-1.5 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-colors"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Print / Save PDF</span>
+              <span>{t("print_save", "Print / Save PDF")}</span>
             </button>
             <button
               type="button"
@@ -67,7 +69,7 @@ export default function TenderReportModal({
               className="flex items-center space-x-1.5 px-3 py-1.5 bg-maroon-700 hover:bg-maroon-600 text-white rounded-lg text-xs font-semibold transition-colors"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Export JSON</span>
+              <span>{t("export_json", "Export JSON")}</span>
             </button>
             <button
               type="button"
@@ -84,42 +86,42 @@ export default function TenderReportModal({
           {/* Official Letterhead */}
           <div className="border-b-2 border-maroon-800 pb-5 text-center">
             <div className="text-xs font-bold uppercase tracking-widest text-slate-500">
-              Government of India • Ministry of Consumer Affairs, Food & Public Distribution
+              {t("report_header_doca", "Government of India • Ministry of Consumer Affairs, Food & Public Distribution")}
             </div>
             <h1 className="text-xl font-bold font-serif text-maroon-900 mt-1">
-              BUREAU OF INDIAN STANDARDS (BIS) COMPLIANCE AUDIT CERTIFICATE
+              {t("report_title", "BUREAU OF INDIAN STANDARDS (BIS) COMPLIANCE AUDIT CERTIFICATE")}
             </h1>
             <p className="text-xs text-slate-600 mt-1">
-              Generated for E-Procurement Specification Verification & Legal Standardization
+              {t("report_sub", "Generated for E-Procurement Specification Verification & Legal Standardization")}
             </p>
           </div>
 
           {/* Audit Summary Box */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-50 p-4 rounded-xl border border-slate-200">
             <div>
-              <span className="text-slate-500 block text-[10px] uppercase">Audit Date</span>
+              <span className="text-slate-500 block text-[10px] uppercase">{t("audit_date", "Audit Date")}</span>
               <span className="font-semibold text-slate-900">{new Date().toLocaleDateString('en-IN', { dateStyle: 'long' })}</span>
             </div>
             <div>
-              <span className="text-slate-500 block text-[10px] uppercase">Detected Language</span>
+              <span className="text-slate-500 block text-[10px] uppercase">{t("language_label", "Detected Language")}</span>
               <span className="font-semibold text-slate-900">{reportData.detected_language}</span>
             </div>
             <div>
-              <span className="text-slate-500 block text-[10px] uppercase">Mandatory QCO Flag</span>
+              <span className="text-slate-500 block text-[10px] uppercase">{t("compliance_verdict", "Statutory QCO Mandate")}</span>
               <span className={`font-bold ${reportData.mandatory_qco_flag ? "text-maroon-700" : "text-emerald-700"}`}>
-                {reportData.mandatory_qco_flag ? "MANDATORY CERTIFICATION" : "VOLUNTARY / STANDARD"}
+                {reportData.mandatory_qco_flag ? translateTerm("MANDATORY_QCO") : translateTerm("VOLUNTARY")}
               </span>
             </div>
             <div>
-              <span className="text-slate-500 block text-[10px] uppercase">Standards Evaluated</span>
-              <span className="font-semibold text-slate-900">{reportData.primary_recommendations.length} Primary Codes</span>
+              <span className="text-slate-500 block text-[10px] uppercase">{t("standards_identified", "Standards Evaluated")}</span>
+              <span className="font-semibold text-slate-900">{reportData.primary_recommendations.length} Standards</span>
             </div>
           </div>
 
           {/* User Tender Query */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
-              Procurement Description / Technical Specification Input
+              {t("tender_reference", "Procurement Description / Technical Specification Input")}
             </h4>
             <div className="p-3 bg-slate-100 rounded-lg text-xs font-mono text-slate-800 leading-relaxed">
               {reportData.query_processed}
@@ -131,13 +133,13 @@ export default function TenderReportModal({
             <div className="bg-rose-50 border-l-4 border-rose-600 p-4 rounded-r-lg space-y-2">
               <div className="flex items-center space-x-2 text-rose-900 font-bold text-xs uppercase tracking-wide">
                 <AlertTriangle className="w-4 h-4 text-rose-600" />
-                <span>Superseded / Outdated Standards Identified in Tender</span>
+                <span>{t("lifecycle_warning_title", "Superseded / Outdated Standards Identified in Tender")}</span>
               </div>
               {reportData.lifecycle_warnings.map((w, i) => (
                 <div key={i} className="text-xs text-rose-800">
                   <p><strong>Detected Code:</strong> {w.is_code_detected}</p>
                   <p><strong>Warning:</strong> {w.warning_message}</p>
-                  <p><strong>Mandatory Remediation:</strong> {w.action_required}</p>
+                  <p><strong>Remediation:</strong> {w.action_required}</p>
                 </div>
               ))}
             </div>
@@ -146,7 +148,7 @@ export default function TenderReportModal({
           {/* Primary Recommended Standards Table */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-              Primary Applicable Indian Standards (BIS)
+              {t("primary_standards_mandated", "Primary Applicable Indian Standards (BIS)")}
             </h4>
             <table className="w-full text-xs border border-slate-200 divide-y divide-slate-200">
               <thead className="bg-slate-50 text-slate-700">
@@ -154,7 +156,7 @@ export default function TenderReportModal({
                   <th className="p-2.5 text-left font-semibold">Standard Code</th>
                   <th className="p-2.5 text-left font-semibold">Title & Scope</th>
                   <th className="p-2.5 text-left font-semibold">Status</th>
-                  <th className="p-2.5 text-left font-semibold">Statutory Mandate</th>
+                  <th className="p-2.5 text-left font-semibold">Scheme</th>
                   <th className="p-2.5 text-right font-semibold">Confidence</th>
                 </tr>
               </thead>
@@ -170,11 +172,11 @@ export default function TenderReportModal({
                     </td>
                     <td className="p-2.5 whitespace-nowrap">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${rec.standard.status === 'ACTIVE' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}`}>
-                        {rec.standard.status}
+                        {translateTerm(rec.standard.status)}
                       </span>
                     </td>
                     <td className="p-2.5 font-medium text-slate-800 whitespace-nowrap">
-                      {rec.standard.mandatory_cert_scheme || "Voluntary"}
+                      {rec.standard.mandatory_cert_scheme ? translateTerm(rec.standard.mandatory_cert_scheme) : translateTerm("VOLUNTARY")}
                     </td>
                     <td className="p-2.5 text-right font-mono font-bold text-maroon-700 whitespace-nowrap">
                       {Math.round(rec.confidence_score * 100)}%
@@ -185,33 +187,40 @@ export default function TenderReportModal({
             </table>
           </div>
 
-          {/* Ready-to-paste Tender Clauses */}
-          {reportData.recommended_tender_clauses && reportData.recommended_tender_clauses.length > 0 && (
+          {/* Allied Normative References */}
+          {reportData.primary_recommendations.some(r => r.allied_standards && r.allied_standards.length > 0) && (
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                Standardized GeM / CPP Portal Specification Clauses
+                {t("normative_allied_refs", "Allied Normative References (Component & Safety Codes)")}
               </h4>
-              <div className="space-y-2">
-                {reportData.recommended_tender_clauses.map((clause, i) => (
-                  <div key={i} className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs font-mono text-slate-800 leading-relaxed">
-                    {clause}
+              <div className="space-y-1 text-xs">
+                {reportData.primary_recommendations.flatMap(r => r.allied_standards || []).slice(0, 8).map((norm, idx) => (
+                  <div key={idx} className="p-2 bg-slate-50 rounded border border-slate-200/80 flex items-center justify-between">
+                    <div>
+                      <span className="font-semibold font-mono text-slate-900">{norm.is_code}</span>
+                      <span className="text-slate-600 ml-2">{norm.title}</span>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Legal Sign-off / Footer */}
-          <div className="pt-6 border-t border-slate-200 text-[11px] text-slate-500 flex justify-between items-end">
+          {/* Mandatory Tender Clauses */}
+          {reportData.recommended_tender_clauses && reportData.recommended_tender_clauses.length > 0 && (
             <div>
-              <p>Certified under the authority of Department of Consumer Affairs.</p>
-              <p>Ref: ManakSetu AI Verification System (Govt of India)</p>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                {t("statutory_clause", "Mandatory Tender Clause to Incorporate")}
+              </h4>
+              <div className="space-y-2">
+                {reportData.recommended_tender_clauses.map((clause, idx) => (
+                  <div key={idx} className="p-3 bg-slate-50 border-l-4 border-maroon-700 rounded-r text-xs text-slate-800 font-mono leading-relaxed">
+                    {clause}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="text-right">
-              <div className="h-10 border-b border-slate-400 w-48 mb-1"></div>
-              <span>Authorized Procurement Officer Signature</span>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

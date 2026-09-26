@@ -5,22 +5,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShieldCheck, Network, FileSearch, Scale, BookOpen, Sparkles, ExternalLink } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar({
   selectedLang,
   onLangChange,
 }: {
-  selectedLang: string;
-  onLangChange: (lang: string) => void;
+  selectedLang?: string;
+  onLangChange?: (lang: string) => void;
 }) {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   const navLinks = [
-    { href: "/dashboard", label: "Recommendation Engine", icon: Sparkles },
-    { href: "/tender-analyzer", label: "Tender PDF Parser", icon: FileSearch },
-    { href: "/graph-view", label: "Knowledge Graph", icon: Network },
-    { href: "/qco-tracker", label: "Mandatory QCOs", icon: Scale },
-    { href: "/standards", label: "Standards Catalog", icon: BookOpen },
+    { href: "/dashboard", label: t("nav_recommender", "Recommendation Engine"), icon: Sparkles },
+    { href: "/tender-analyzer", label: t("nav_tender_parser", "Tender PDF Parser"), icon: FileSearch },
+    { href: "/graph-view", label: t("nav_graph", "Knowledge Graph"), icon: Network },
+    { href: "/qco-tracker", label: t("nav_qco", "Mandatory QCOs"), icon: Scale },
+    { href: "/standards", label: t("nav_standards", "Standards Catalog"), icon: BookOpen },
   ];
 
   return (
@@ -30,14 +32,16 @@ export default function Navbar({
         <div className="flex items-center space-x-3">
           <span className="font-semibold tracking-wide flex items-center gap-1.5">
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 live-pulse"></span>
-            GOVERNMENT OF INDIA • MINISTRY OF CONSUMER AFFAIRS, FOOD & PUBLIC DISTRIBUTION
+            {t("ministry_banner", "GOVERNMENT OF INDIA • MINISTRY OF CONSUMER AFFAIRS, FOOD & PUBLIC DISTRIBUTION")}
           </span>
           <span className="hidden md:inline text-maroon-300">|</span>
-          <span className="hidden md:inline text-maroon-200">Department of Consumer Affairs (DoCA) & Bureau of Indian Standards (BIS)</span>
+          <span className="hidden md:inline text-maroon-200">
+            {t("doca_bis", "Department of Consumer Affairs (DoCA) & Bureau of Indian Standards (BIS)")}
+          </span>
         </div>
         <div className="flex items-center space-x-4 text-[11px] text-maroon-200">
           <span className="bg-maroon-900/80 px-2 py-0.5 rounded border border-maroon-700 text-amber-300 font-mono">
-            BIS Act 2016 Compliant
+            {t("bis_act_compliant", "BIS Act 2016 Compliant")}
           </span>
           <a
             href="https://www.services.bis.gov.in/"
@@ -45,7 +49,7 @@ export default function Navbar({
             rel="noreferrer"
             className="hover:text-white flex items-center gap-1 transition-colors"
           >
-            BIS Portal <ExternalLink className="w-3 h-3" />
+            {t("bis_portal", "BIS Portal")} <ExternalLink className="w-3 h-3" />
           </a>
         </div>
       </div>
@@ -64,11 +68,11 @@ export default function Navbar({
                   Manak<span className="text-maroon-700">Setu</span>
                 </span>
                 <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-maroon-100 text-maroon-800 border border-maroon-200">
-                  AI Recommender
+                  {t("app_badge", "AI Recommender")}
                 </span>
               </div>
               <p className="text-xs text-slate-500 font-medium">
-                Indian Standards Identification for Public Procurement
+                {t("app_subtitle", "Indian Standards Identification for Public Procurement")}
               </p>
             </div>
           </Link>

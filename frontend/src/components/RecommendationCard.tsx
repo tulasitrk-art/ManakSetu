@@ -12,7 +12,6 @@ import {
   Copy,
   Check,
   Network,
-  Calendar,
   Sparkles,
   ChevronDown,
   ChevronUp,
@@ -20,6 +19,7 @@ import {
 } from "lucide-react";
 import { PrimaryRecommendation } from "@/lib/types";
 import ComplianceBadge from "./ComplianceBadge";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface RecommendationCardProps {
   rec: PrimaryRecommendation;
@@ -32,6 +32,7 @@ export default function RecommendationCard({
   rank,
   onUpgradeStandard,
 }: RecommendationCardProps) {
+  const { t, translateTerm } = useLanguage();
   const [copied, setCopied] = useState(false);
   const [showAllied, setShowAllied] = useState(true);
   const [showTesting, setShowTesting] = useState(false);
@@ -73,16 +74,16 @@ export default function RecommendationCard({
                       : "bg-rose-100 text-rose-800 border border-rose-300"
                   }`}
                 >
-                  {std.status}
+                  {translateTerm(std.status)}
                 </span>
                 {rec.exact_code_match && (
                   <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-100 text-blue-800 border border-blue-200">
-                    Exact Code Match
+                    {t("exact_code_match", "Exact Code Match")}
                   </span>
                 )}
               </div>
               <p className="text-xs text-slate-500 font-medium">
-                {std.department_division} {std.section_committee ? `• ${std.section_committee}` : ""}
+                {translateTerm(std.department_division)} {std.section_committee ? `• ${std.section_committee}` : ""}
               </p>
             </div>
           </div>
@@ -97,7 +98,7 @@ export default function RecommendationCard({
                 </span>
               </div>
               <span className="text-[10px] text-slate-500 uppercase tracking-wider font-medium">
-                Relevance Confidence
+                {t("relevance_confidence", "Relevance Confidence")}
               </span>
             </div>
 
@@ -123,7 +124,7 @@ export default function RecommendationCard({
         <div className="bg-maroon-50/60 border border-maroon-100 rounded-lg p-3 text-xs text-slate-700 flex items-start gap-2.5">
           <Info className="w-4 h-4 text-maroon-700 flex-shrink-0 mt-0.5" />
           <div>
-            <strong className="text-maroon-900 font-semibold">AI Recommendation Rationale: </strong>
+            <strong className="text-maroon-900 font-semibold">{t("nav_recommender", "Recommendation")}: </strong>
             <span>{rec.relevance_rationale}</span>
           </div>
         </div>
@@ -135,16 +136,16 @@ export default function RecommendationCard({
             <span className="font-semibold text-slate-800">{std.year_published || "N/A"}</span>
           </div>
           <div className="bg-slate-50 p-2 rounded border border-slate-200/60">
-            <span className="text-slate-400 block text-[10px] uppercase">Reaffirmed Year</span>
-            <span className="font-semibold text-emerald-700">{std.reaffirm_year ? `Reaffirmed ${std.reaffirm_year}` : "Active"}</span>
+            <span className="text-slate-400 block text-[10px] uppercase">{t("reaffirm_year", "Reaffirmed Year")}</span>
+            <span className="font-semibold text-emerald-700">{std.reaffirm_year ? `${std.reaffirm_year}` : translateTerm("ACTIVE")}</span>
           </div>
           <div className="bg-slate-50 p-2 rounded border border-slate-200/60">
-            <span className="text-slate-400 block text-[10px] uppercase">Amendments</span>
-            <span className="font-semibold text-slate-800">{std.amendments_count} Published</span>
+            <span className="text-slate-400 block text-[10px] uppercase">{t("amendments_count", "Amendments")}</span>
+            <span className="font-semibold text-slate-800">{std.amendments_count}</span>
           </div>
           <div className="bg-slate-50 p-2 rounded border border-slate-200/60">
-            <span className="text-slate-400 block text-[10px] uppercase">Certification Scheme</span>
-            <span className="font-semibold text-maroon-800">{std.mandatory_cert_scheme || "Voluntary"}</span>
+            <span className="text-slate-400 block text-[10px] uppercase">Scheme</span>
+            <span className="font-semibold text-maroon-800">{std.mandatory_cert_scheme ? translateTerm(std.mandatory_cert_scheme) : translateTerm("VOLUNTARY")}</span>
           </div>
         </div>
 
@@ -156,14 +157,14 @@ export default function RecommendationCard({
                 <AlertTriangle className="w-5 h-5 text-rose-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <h5 className="text-xs font-bold text-rose-900 uppercase tracking-wide">
-                    Outdated / Superseded Standard Detected
+                    {t("lifecycle_warning_title", "Outdated / Superseded Standard Detected")}
                   </h5>
                   <p className="text-xs text-rose-700 mt-0.5">
-                    This specification references an obsolete version. Using it in live tenders creates audit and procurement non-compliance risks.
+                    {t("lifecycle_warning_desc", "This specification references an obsolete version. Using it in live tenders creates audit and procurement non-compliance risks.")}
                   </p>
                   {std.superseded_by && (
                     <p className="text-xs font-semibold text-rose-900 mt-1">
-                      Active Replacement: <span className="underline">{std.superseded_by}</span>
+                      {t("active_substitute", "Active Replacement")}: <span className="underline">{std.superseded_by}</span>
                     </p>
                   )}
                 </div>
@@ -174,7 +175,7 @@ export default function RecommendationCard({
                   onClick={() => onUpgradeStandard(std.superseded_by!)}
                   className="px-3 py-1.5 bg-rose-700 hover:bg-rose-800 text-white rounded text-xs font-semibold whitespace-nowrap shadow-sm"
                 >
-                  Upgrade to Latest
+                  {t("auto_upgrade", "Auto-Upgrade to")} {std.superseded_by}
                 </button>
               )}
             </div>
@@ -186,13 +187,13 @@ export default function RecommendationCard({
           <div className="bg-amber-50/70 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 space-y-1">
             <div className="flex items-center gap-1.5 font-bold text-amber-950">
               <ShieldCheck className="w-4 h-4 text-amber-700" />
-              <span>Gazette Notification: {std.qco_details.order_name}</span>
+              <span>{t("gazette_notification", "Gazette Notification")}: {std.qco_details.order_name}</span>
             </div>
             <p className="text-[11px] text-amber-800">
-              <strong>Order Ref:</strong> {std.qco_details.gazette_notification} • <strong>Enforcement Date:</strong> {std.qco_details.enforcement_date}
+              <strong>Order Ref:</strong> {std.qco_details.gazette_notification} • <strong>{t("enforcement_date", "Enforcement Date")}:</strong> {std.qco_details.enforcement_date}
             </p>
             <p className="text-[11px] text-amber-800">
-              <strong>Statutory Requirement:</strong> {std.qco_details.penal_action}
+              <strong>{t("penal_clause", "Statutory Penalty")}:</strong> {std.qco_details.penal_action}
             </p>
           </div>
         )}
@@ -207,7 +208,7 @@ export default function RecommendationCard({
             >
               <div className="flex items-center space-x-2">
                 <Layers className="w-4 h-4 text-maroon-700" />
-                <span>Normative & Allied Standards ({std.normative_references.length})</span>
+                <span>{t("normative_allied_tab", "Normative References & Allied Standards")} ({std.normative_references.length})</span>
               </div>
               {showAllied ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
@@ -244,7 +245,7 @@ export default function RecommendationCard({
             >
               <div className="flex items-center space-x-2">
                 <FlaskConical className="w-4 h-4 text-maroon-700" />
-                <span>Mandatory Test Methods & Protocols ({std.test_methods.length})</span>
+                <span>{t("mandatory_tests_tab", "Mandatory Testing Protocols")} ({std.test_methods.length})</span>
               </div>
               {showTesting ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
@@ -274,7 +275,7 @@ export default function RecommendationCard({
               <div className="flex items-center space-x-2">
                 <FileCode2 className="w-4 h-4 text-amber-400" />
                 <span className="font-semibold text-white tracking-wide">
-                  GeM / Tender Compliance Clause
+                  {t("legal_clauses_tab", "Recommended Tender Clause")}
                 </span>
               </div>
               <button
@@ -285,12 +286,12 @@ export default function RecommendationCard({
                 {copied ? (
                   <>
                     <Check className="w-3 h-3" />
-                    <span>Copied!</span>
+                    <span>{t("copied", "Copied to Clipboard!")}</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3 h-3" />
-                    <span>Copy Clause</span>
+                    <span>{t("copy_clause", "Copy Legal Clause")}</span>
                   </>
                 )}
               </button>
@@ -309,12 +310,12 @@ export default function RecommendationCard({
               className="inline-flex items-center space-x-1 text-maroon-700 hover:text-maroon-900 font-semibold hover:underline"
             >
               <Network className="w-3.5 h-3.5" />
-              <span>View in Knowledge Graph</span>
+              <span>{t("view_in_graph", "Explore in Graph")}</span>
             </Link>
           </div>
 
           <div className="text-slate-400 text-[11px]">
-            Bureau of Indian Standards Catalog ID: {std.standard_number}
+            BIS Code ID: {std.standard_number}
           </div>
         </div>
       </div>
